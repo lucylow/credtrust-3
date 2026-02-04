@@ -4,17 +4,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import WalletConnector from './WalletConnector';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import { AnimatedPrefetchLink } from './PrefetchLink';
+import appRoutes from '@/routes/appRoutes';
 import { cn } from '@/lib/utils';
-
-const navLinks = [
-  { to: '/app', label: 'Dashboard' },
-  { to: '/app/submit', label: 'Submit Data' },
-  { to: '/app/nft', label: 'My NFTs' },
-];
 
 export default function AppHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Get main nav routes (first 4 routes for header)
+  const headerRoutes = appRoutes.slice(0, 4);
 
   return (
     <header className="sticky top-0 z-50 glass-nav">
@@ -33,28 +32,31 @@ export default function AppHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.to;
+          {headerRoutes.map((route) => {
+            const isActive = location.pathname === route.path;
+            const Icon = route.icon;
             return (
-              <Link
-                key={link.to}
-                to={link.to}
+              <AnimatedPrefetchLink
+                key={route.path}
+                to={route.path}
                 className={cn(
-                  'relative px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+                  'relative px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-2',
                   isActive
                     ? 'text-primary'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 )}
+                showActiveIndicator={false}
               >
-                {link.label}
+                <Icon className="h-4 w-4" />
+                {route.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/20"
+                    className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/20 -z-10"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
-              </Link>
+              </AnimatedPrefetchLink>
             );
           })}
         </nav>
@@ -88,22 +90,29 @@ export default function AppHeader() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-border bg-background"
           >
-            <nav className="container py-4 space-y-2">
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.to;
+            <nav className="container py-4 space-y-1">
+              {appRoutes.map((route) => {
+                const isActive = location.pathname === route.path;
+                const Icon = route.icon;
                 return (
                   <Link
-                    key={link.to}
-                    to={link.to}
+                    key={route.path}
+                    to={route.path}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      'block px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                      'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors',
                       isActive
                         ? 'bg-primary/10 text-primary border border-primary/20'
                         : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                     )}
                   >
-                    {link.label}
+                    <Icon className="h-5 w-5" />
+                    <div>
+                      <p>{route.name}</p>
+                      {route.description && (
+                        <p className="text-xs text-muted-foreground">{route.description}</p>
+                      )}
+                    </div>
                   </Link>
                 );
               })}
