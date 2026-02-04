@@ -1,4 +1,3 @@
-import React, { forwardRef } from "react";
 import { ListChecks, Target, Trophy, Video, CheckCircle, Star, Medal, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -25,7 +24,7 @@ const bonuses = [
   "Best Use of iExec Oracle",
 ];
 
-const HackathonSection = forwardRef<HTMLElement>((_, forwardedRef) => {
+const HackathonSection = () => {
   const [inViewRef, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -183,8 +182,6 @@ const HackathonSection = forwardRef<HTMLElement>((_, forwardedRef) => {
       </div>
     </section>
   );
-});
-
-HackathonSection.displayName = "HackathonSection";
+};
 
 export default HackathonSection;

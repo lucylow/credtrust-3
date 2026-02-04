@@ -1,8 +1,7 @@
-import React, { forwardRef } from "react";
 import { Github, Twitter, Shield, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Footer = forwardRef<HTMLElement>((_, ref) => {
+const Footer = () => {
   const projectLinks = [
     { href: "#problem", label: "Problem Statement" },
     { href: "#solution", label: "Technical Solution" },
@@ -29,7 +28,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
   };
 
   return (
-    <footer ref={ref} className="bg-background border-t border-border py-16 relative">
+    <footer className="bg-background border-t border-border py-16 relative">
       {/* Scroll to top button */}
       <motion.button
         onClick={scrollToTop}
@@ -173,8 +172,6 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </footer>
   );
-});
-
-Footer.displayName = "Footer";
+};
 
 export default Footer;
