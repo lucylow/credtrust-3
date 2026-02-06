@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Copy, Download, ExternalLink, Shield, FileCheck } from 'lucide-react';
+import { Copy, Download, ExternalLink, Shield, FileCheck, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { usePrivacyStore } from '@/store/privacyStore';
+import { usePrivacy } from '@/hooks/usePrivacy';
 import { toast } from 'sonner';
 
 export default function AttestationViewer() {
-  const { latestAttestation } = usePrivacyStore();
+  const { latestAttestation, isLoading, submitPrivacyJob } = usePrivacy();
 
   const handleCopy = () => {
     if (latestAttestation) {
@@ -23,12 +23,34 @@ export default function AttestationViewer() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `attestation-${Date.now()}.json`;
+      a.download = `attestation-${latestAttestation.id}.json`;
       a.click();
       URL.revokeObjectURL(url);
       toast.success('Attestation exported');
     }
   };
+
+  const handleStartJob = () => {
+    const mockEncryptedHash = '0x' + Array.from({ length: 64 }, () => 
+      Math.floor(Math.random() * 16).toString(16)
+    ).join('');
+    submitPrivacyJob.mutate(mockEncryptedHash);
+  };
+
+  if (isLoading) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="glass-card p-6"
+      >
+        <div className="flex items-center justify-center py-8">
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        </div>
+      </motion.div>
+    );
+  }
 
   if (!latestAttestation) {
     return (
@@ -44,7 +66,12 @@ export default function AttestationViewer() {
           <p className="text-sm text-muted-foreground mb-4">
             Run a privacy job to generate your first TEE attestation.
           </p>
-          <Button>Start Privacy Job</Button>
+          <Button onClick={handleStartJob} disabled={submitPrivacyJob.isPending}>
+            {submitPrivacyJob.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : null}
+            Start Privacy Job
+          </Button>
         </div>
       </motion.div>
     );
@@ -64,7 +91,9 @@ export default function AttestationViewer() {
           </div>
           <h3 className="text-lg font-semibold text-foreground">Latest Attestation</h3>
         </div>
-        <Badge className="bg-success/10 text-success border-success/20">Verified</Badge>
+        <Badge className={latestAttestation.is_valid ? 'bg-success/10 text-success border-success/20' : 'bg-destructive/10 text-destructive'}>
+          {latestAttestation.is_valid ? 'Verified' : 'Invalid'}
+        </Badge>
       </div>
 
       <div className="space-y-3 mb-6">
@@ -80,21 +109,28 @@ export default function AttestationViewer() {
             <p className="text-xs text-muted-foreground mb-1">Risk Tier</p>
             <Badge
               className={`${
-                latestAttestation.riskTier === 'A'
+                latestAttestation.risk_tier === 'A'
                   ? 'bg-success/10 text-success'
-                  : latestAttestation.riskTier === 'B'
+                  : latestAttestation.risk_tier === 'B'
                   ? 'bg-primary/10 text-primary'
                   : 'bg-amber-500/10 text-amber-500'
               }`}
             >
-              Tier {latestAttestation.riskTier}
+              Tier {latestAttestation.risk_tier}
             </Badge>
           </div>
 
           <div className="p-3 rounded-lg bg-muted/30 border border-border">
             <p className="text-xs text-muted-foreground mb-1">Chain ID</p>
-            <p className="font-medium text-foreground">421614 (Arbitrum Sepolia)</p>
+            <p className="font-medium text-foreground">{latestAttestation.chain_id} (Arbitrum Sepolia)</p>
           </div>
+        </div>
+
+        <div className="p-3 rounded-lg bg-muted/30 border border-border">
+          <p className="text-xs text-muted-foreground mb-1">Created</p>
+          <p className="font-medium text-foreground">
+            {new Date(latestAttestation.created_at).toLocaleString()}
+          </p>
         </div>
       </div>
 

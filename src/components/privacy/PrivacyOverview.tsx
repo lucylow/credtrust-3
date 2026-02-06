@@ -1,31 +1,41 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, LockKeyhole, Zap, FileText, Plus } from 'lucide-react';
+import { ShieldCheck, LockKeyhole, Zap, FileText, Plus, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { usePrivacyStore } from '@/store/privacyStore';
+import { usePrivacy } from '@/hooks/usePrivacy';
+import { toast } from 'sonner';
 
 export default function PrivacyOverview() {
-  const { totalJobs, dataProtected, disclosureTokens } = usePrivacyStore();
+  const { totalJobs, dataProtected, activeTokens, submitPrivacyJob, isLoading } = usePrivacy();
 
-  const activeTokens = disclosureTokens.filter(
-    (t) => !t.used && Date.now() < t.expiresAt
-  ).length;
+  const handleNewJob = async () => {
+    // Generate a mock encrypted data hash (in production, this comes from client-side encryption)
+    const mockEncryptedHash = '0x' + Array.from({ length: 64 }, () => 
+      Math.floor(Math.random() * 16).toString(16)
+    ).join('');
+    
+    submitPrivacyJob.mutate(mockEncryptedHash);
+  };
+
+  const handleExportAudit = () => {
+    toast.info('Preparing audit log...', { description: 'Your privacy audit will be exported shortly.' });
+  };
 
   const stats = [
     {
       label: 'Privacy Jobs',
-      value: totalJobs,
+      value: isLoading ? '...' : totalJobs,
       icon: ShieldCheck,
       gradient: 'from-emerald-500 to-green-600',
     },
     {
       label: 'Data Protected',
-      value: `${dataProtected}MB`,
+      value: isLoading ? '...' : `${dataProtected.toFixed(1)}MB`,
       icon: LockKeyhole,
       gradient: 'from-purple-500 to-violet-600',
     },
     {
       label: 'Active Tokens',
-      value: activeTokens,
+      value: isLoading ? '...' : activeTokens,
       icon: Zap,
       gradient: 'from-primary to-blue-600',
     },
@@ -66,11 +76,19 @@ export default function PrivacyOverview() {
       </div>
 
       <div className="flex gap-3">
-        <Button className="flex-1 gap-2">
-          <Plus className="h-4 w-4" />
-          New Privacy Job
+        <Button 
+          className="flex-1 gap-2" 
+          onClick={handleNewJob}
+          disabled={submitPrivacyJob.isPending}
+        >
+          {submitPrivacyJob.isPending ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Plus className="h-4 w-4" />
+          )}
+          {submitPrivacyJob.isPending ? 'Processing...' : 'New Privacy Job'}
         </Button>
-        <Button variant="outline" className="flex-1 gap-2">
+        <Button variant="outline" className="flex-1 gap-2" onClick={handleExportAudit}>
           <FileText className="h-4 w-4" />
           Export Audit Log
         </Button>
