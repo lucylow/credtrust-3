@@ -7,7 +7,7 @@ import {
   FileUp,
   Store,
   BarChart3,
-  
+  Shield,
   Cpu,
   Wallet,
   Sparkles,
@@ -19,7 +19,7 @@ const navItems = [
   { to: "/app/submit", label: "Submit Data", icon: FileUp, badge: null },
   { to: "/app/marketplace", label: "Marketplace", icon: Store, badge: "12" },
   { to: "/app/analytics", label: "Analytics", icon: BarChart3, badge: null },
-  
+  { to: "/app/privacy", label: "Privacy", icon: Shield, badge: "New" },
   { to: "/app/tee", label: "TEE Demo", icon: Cpu, badge: "Live" },
   { to: "/app/nft", label: "My NFTs", icon: Wallet, badge: null },
 ];

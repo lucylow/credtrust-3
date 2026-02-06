@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, Suspense } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import AppHeader from '@/components/app/AppHeader';
 import Dashboard from '@/components/app/Dashboard';
 import DataSubmission from '@/components/app/DataSubmission';
@@ -14,6 +14,9 @@ import { SlideViewer } from '@/components/slides';
 import { Button } from '@/components/ui/button';
 import Sidebar from '@/components/layout/Sidebar';
 import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
+
+// Lazy load Privacy page for code splitting
+const PrivacyPage = lazy(() => import('@/pages/app/PrivacyPage'));
 
 const pageVariants = {
   initial: { opacity: 0, y: 12 },
@@ -48,6 +51,7 @@ export default function AppPage() {
                   <Route path="/analytics" element={<AnalyticsPage />} />
                   <Route path="/slides" element={<SlidesPage />} />
                   <Route path="/tee" element={<TEEPage />} />
+                  <Route path="/privacy" element={<PrivacyPage />} />
                   <Route path="*" element={<Navigate to="/app" replace />} />
                 </Routes>
               </AnimatePresence>
