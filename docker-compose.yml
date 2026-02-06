@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  elizaos-frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_ELIZAOS_MODE=production
+    depends_on:
+      - supabase
+      - redis
+
+  supabase:
+    image: supabase/postgres:16
+    environment:
+      - POSTGRES_PASSWORD=elizaos2026hack
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+
+  tdx-worker:
+    image: iexechub/tdx-elizaos-worker:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
+volumes:
+  redis_data:

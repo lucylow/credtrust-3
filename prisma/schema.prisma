@@ -1,0 +1,41 @@
+// prisma/schema.prisma (append or merge)
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SignedOrder {
+  id             String   @id @default(uuid())
+  protectedData  String   // protectedData address
+  grantedAccess  String   // signed grantedAccess returned by DataProtector.grantAccess
+  owner          String   // owner address (seller)
+  authorizedApp  String?  // optional
+  authorizedUser String?  // optional
+  pricePerAccess Float?   // cost (units TBD, RLC)
+  numberOfAccess Int?     // total allowed uses (null = unlimited)
+  remaining      Int?     // remaining uses (decrements)
+  metadata       Json?    // optional metadata (title, description, tags)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Purchase {
+  id          String   @id @default(uuid())
+  orderId     String
+  buyer       String
+  amountPaid  Float
+  txHash      String?  // chain tx if payment occurred on-chain
+  createdAt   DateTime @default(now())
+}
+
+model UsageRecord {
+  id         String   @id @default(uuid())
+  orderId    String
+  receiptId  String?  // if tied to a receipt
+  consumer   String
+  timestamp  DateTime @default(now())
+}

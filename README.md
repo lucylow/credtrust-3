@@ -4,152 +4,143 @@
 
 CredTrust is a high-fidelity, privacy-preserving credit marketplace protocol that combines **iExec Trusted Execution Environments (TEE)**, **Zero-Knowledge Proofs (ZKP)**, and **Risk-Tranching Smart Contracts** to enable institutional-grade credit underwriting on **Arbitrum Sepolia** while maintaining absolute borrower data sovereignty.
 
-## 🚀 Quick Start
+## 🚀 ElizaOS + Intel TDX Integration (Hack4Privacy Ultimate Edition)
 
-```bash
-# Install dependencies
-npm install
+CredTrust-3 has been transformed from a static dashboard into an **Autonomous Agentic Masterpiece** running in **Intel TDX** via iExec.
 
-# Start development server
-npm run dev
+### 🎯 Features
+- ✅ **ElizaOS Framework**: Autonomous agents with persistent memory and reasoning.
+- ✅ **Intel TDX Confidentiality**: Full isolation for sensitive credit scoring logic via hardware-level encryption.
+- ✅ **Autonomous Credit Management**: 24/7 portfolio monitoring and loan execution.
+- ✅ **Multi-platform Support**: Integrated with Discord, Telegram, and X.
+- ✅ **Claude MCP Ready**: Use Claude to manage your TDX agents.
+
+### 🏗️ Agentic Architecture
+```mermaid
+sequenceDiagram
+    participant User
+    participant Eliza as ElizaOS Orchestrator
+    participant TDX as Intel TDX Enclave (iExec)
+    participant Data as DataProtector (Encrypted)
+    participant Chain as Arbitrum Sepolia
+
+    User->>Eliza: "Score my wallet & find loans"
+    Eliza->>Eliza: Analyze Intent & Context
+    Eliza->>TDX: Spawns CreditAgent.compute()
+    TDX->>Data: Fetch Encrypted Credit Data
+    Note over TDX: Decrypts & Processes in Isolation
+    TDX->>TDX: Run Risk Model + Generate ZKP
+    TDX->>Eliza: Return Attested Score + Proof
+    Eliza->>Chain: Submit ZK Proof (ZKVerifier.sol)
+    Chain-->>Eliza: Mint Soulbound NFT
+    Eliza->>User: "Success! Your Tier-A NFT is ready."
 ```
 
-Visit [http://localhost:8080](http://localhost:8080) to view the app.
+### 🛠️ Quick Start (Agent Mode)
+```bash
+# Start ElizaOS development mode
+npm run elizaos:dev
+
+# Build and deploy the TDX agent to iExec
+npm run tdx:deploy
+
+# Run the full hackathon demo stack
+npm run hackathon:demo
+```
+
+### 📁 Agent Structure
+- `src/agents/credtrust-agent.character.json`: Agent personality and goals.
+- `src/agents/eliza-credit-agent.ts`: Core scoring and monitoring logic.
+- `tdx/Dockerfile.tdx`: Specialized container for Intel TDX execution.
+- `src/app/elizaos/page.tsx`: Live agent dashboard.
+
+## 🔐 Privacy-First Workflow (Technical Deep Dive)
+
+CredTrust ensures **Data Sovereignty** by never exposing raw financial data to any party, including the orchestrator.
+
+### 🛡️ Data Sovereignty Diagram
+```mermaid
+flowchart LR
+    subgraph Client [Borrower Side]
+        Raw[Raw Financial Data]
+        DP[iExec Data Protector]
+        Raw -->|Encrypt| DP
+    end
+
+    subgraph IExec [iExec Confidential Computing]
+        Enclave[Intel SGX/TDX Enclave]
+        DP -->|Encrypted Blob| Enclave
+        App[Credit Scoring App]
+        App -->|Runs Inside| Enclave
+    end
+
+    subgraph Output [Verified Results]
+        Enclave -->|Attestation| Verify[Hardware Attestation]
+        Enclave -->|ZKP| ZKVer[ZK Verifier]
+        Enclave -->|NFT| SBNFT[Soulbound NFT]
+    end
+
+    Verify -.->|Proof of Integrity| App
+    ZKVer -->|On-chain State| SBNFT
+```
 
 ## 🔥 iExec Hack4Privacy Features
 
 CredTrust-3 is now supercharged with advanced iExec features:
 
 - **Interactive TEE Demo**: Full lifecycle visualization of a privacy-preserving credit score computation. [Live Demo](/iexec-demo)
-- **Bulk Processing**: Score hundreds of users simultaneously using parallel TEE jobs. [Bulk Scoring](/bulk-score)
-- **Web3Mail**: Confidential notifications sent via iExec Web3Mail without exposing user emails.
+- **Bulk Processing**: Score hundreds of users simultaneously using parallel TEE jobs.
+- **Web3Mail/Telegram**: Confidential notifications sent via iExec Web3Mail without exposing user contact info.
 - **Account Abstraction**: Gasless TEE requests sponsored by iExec Paymaster.
-- **Oracle Integration**: Securely fetching off-chain data via Chainlink + iExec Oracle.
+- **Monetization**: Data providers can monetize their datasets using iExec Data Protector's signed orders.
 
-### 🛠️ iExec Setup
-
-```bash
-# Run the quickstart script
-chmod +x scripts/setup-hackathon.sh
-./scripts/setup-hackathon.sh
+### 📩 Confidential Messaging Workflow
+```mermaid
+graph TD
+    User[User Address] -->|Protects| Email[user@example.com]
+    Email -->|Becomes| PD[Protected Data 0xabc...]
+    PD -->|Grant Access| App[CredTrust Web3Mail App]
+    App -->|Send| Msg[Confidential Message]
+    Msg -->|Through| SGX[iExec SGX Enclave]
+    SGX -->|Delivers| Inbox[User's Physical Email]
+    
+    style SGX fill:#f96,stroke:#333,stroke-width:4px
 ```
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS
+- **Framework**: React 18, TypeScript, Vite
+- **Confidential Computing**: iExec SDK (Data Protector, Web3Mail, TEE)
+- **Agent Framework**: ElizaOS (TDX Integrated)
+- **ZKP**: SnarkJS / Groth16 (Generated in TEE)
+- **Smart Contracts**: Solidity (Arbitrum Sepolia)
 - **UI Components**: shadcn/ui, Radix UI, Framer Motion
-- **Web3**: wagmi, viem, RainbowKit
-- **Charts**: Recharts
-- **State**: Zustand, TanStack Query
 
 ## 📁 Project Structure
 
-```
+```bash
+├── agents/             # ElizaOS agent configurations
+├── contracts/          # Solidity ZK Verifiers & NFT contracts
+├── scripts/            
+│   ├── web3-messaging/ # Web3Mail & Telegram scripts
+│   ├── dataprotector/  # Data monetization scripts
+│   └── setup-hackathon.sh
 ├── src/
-│   ├── components/     # React components
-│   │   ├── ui/         # shadcn/ui components
-│   │   ├── landing/    # Landing page sections
-│   │   └── ...         # Feature components
-│   ├── hooks/          # Custom React hooks
-│   ├── lib/            # Utility functions
-│   ├── pages/          # Page components
-│   ├── wallet/         # Web3 wallet provider
-│   └── types/          # TypeScript types
-├── contracts/          # Solidity smart contracts
-├── scripts/            # Deployment scripts
-└── public/             # Static assets
-```
-
-## 🔐 How CredTrust Works
-
-1. **Ingestion**: Borrowers encrypt data client-side using iExec Data Protector
-2. **Processing**: An iExec SGX Enclave computes the credit score in isolation
-3. **Verification**: The TEE generates a Groth16 ZK Proof for risk tier verification
-4. **Settlement**: On-chain verifiers validate the ZKP and mint a Soulbound NFT credential
-
-## 🏗️ Architecture
-
-```mermaid
-graph TD
-    subgraph "Borrower Domain"
-        Data[Raw Credit Data] -->|Encrypt| iExecDP[iExec Data Protector]
-    end
-
-    subgraph "Privacy Layer (TEE)"
-        iExecDP -->|Encrypted Blob| SGX[iExec SGX Enclave]
-        SGX -->|Compute| Score[Credit Score]
-        Score -->|Generate| ZKP[Groth16 ZK Proof]
-    end
-
-    subgraph "Consensus Layer (Arbitrum)"
-        ZKP -->|Verify| ZKVer[ZKVerifier.sol]
-        ZKVer -->|Mint| SBNFT[CreditProofNFT.sol]
-        SBNFT -->|Authorize| Market[CredTrustMarketplace.sol]
-    end
+│   ├── agents/         # TDX Agent logic
+│   ├── components/     # React UI (TEE Workflow, Monitors)
+│   ├── lib/            # iExec & Web3 utilities
+│   └── wallet/         # Multi-chain provider setup
+└── tdx/                # Intel TDX Docker configuration
 ```
 
 ## 💰 Risk Tranching
 
-| Tier | Score Range | Interest Rate | Max LTV |
-|------|-------------|---------------|---------|
-| **A** | 750+ | 4.5% | 85% |
-| **B** | 700-749 | 8.0% | 70% |
-| **C** | 650-699 | 12.5% | 50% |
-| **D** | <650 | 22.0% | 30% |
-
-## 🔧 Environment Variables
-
-Create a `.env` file for local development:
-
-```env
-VITE_WALLETCONNECT_PROJECT_ID=your_project_id
-VITE_BACKEND_URL=http://localhost:4000
-```
-
-## 📦 Deployment
-
-### Lovable (Recommended)
-Simply click **Share → Publish** in the Lovable editor.
-
-### Manual Deployment
-```bash
-npm run build
-# Deploy the dist/ folder to your hosting provider
-```
-
-## iExec Web3 Messaging integration (CredTrust demo)
-
-This project includes scripts and UI components that demonstrate integration with iExec Web3Mail and Web3Telegram.
-
-### Setup
-
-1. Copy `.env.example` -> `.env` and fill:
-   - `PRIVATE_KEY` (your test wallet)
-   - `IEXEC_APP_ADDRESS` (optional app address)
-   - `IEXEC_IPFS_UPLOAD`, `IEXEC_SMS_URL` (optional)
-   - Set `DEV_MODE=true` to run dry-run mode without contacting iExec services.
-
-2. Install deps:
-   ```bash
-   npm ci
-   ```
-
-Protect a contact and grant access (node):
-```bash
-npx ts-node scripts/web3-messaging/create_protected_data.ts user@example.com
-npx ts-node scripts/web3-messaging/grant_access.ts 0xProtectedAddress --allowBulk true
-```
-
-Send single / campaign messages:
-```bash
-npx ts-node scripts/web3-messaging/send_single_email.ts <protectedData>
-npx ts-node scripts/web3-messaging/prepare_and_send_campaign_email.ts
-```
-
-React UI: the components are in src/components/Web3Messaging. Add them to your routes/pages to get an interactive demo page.
-Notes
-Telegram recipients must start a conversation with @IExecWeb3TelegramBot to obtain a Chat ID (they then pass that Chat ID to you to protect).
-Each sent message requires execution payment (RLC). For local demos use DEV_MODE=true to simulate behavior.
+| Tier | Score Range | Interest Rate | Max LTV | On-chain Credential |
+|------|-------------|---------------|---------|-------------------|
+| **A** | 750+ | 4.5% | 85% | `CredProofNFT_A` |
+| **B** | 700-749 | 8.0% | 70% | `CredProofNFT_B` |
+| **C** | 650-699 | 12.5% | 50% | `CredProofNFT_C` |
+| **D** | <650 | 22.0% | 30% | `CredProofNFT_D` |
 
 ## 🤝 Contributing
 

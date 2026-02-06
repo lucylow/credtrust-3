@@ -2,13 +2,15 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Shield, Copy, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TEEAttestation } from '@/types/analytics.types';
+import { getIExecExplorerUrl } from '@/lib/iexec-client';
 import { toast } from 'sonner';
 
 interface AttestationVerifierProps {
   attestation: TEEAttestation;
+  taskId?: string;
 }
 
-export default function AttestationVerifier({ attestation }: AttestationVerifierProps) {
+export default function AttestationVerifier({ attestation, taskId }: AttestationVerifierProps) {
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast.success(`${label} copied to clipboard`);
@@ -85,9 +87,20 @@ export default function AttestationVerifier({ attestation }: AttestationVerifier
               {new Date(attestation.timestamp).toLocaleString()}
             </p>
           </div>
-          <Button variant="ghost" size="sm" className="gap-2">
-            <ExternalLink className="h-4 w-4" />
-            View on Explorer
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="gap-2"
+            asChild
+          >
+            <a 
+              href={taskId ? getIExecExplorerUrl('task', taskId) : getIExecExplorerUrl('address', attestation.mrEnclave)} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="h-4 w-4" />
+              View on Explorer
+            </a>
           </Button>
         </div>
       </div>

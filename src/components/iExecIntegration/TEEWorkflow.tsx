@@ -72,9 +72,10 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
       setState({ step: 'deploying', progress: 45 });
 
       // Step 3: Compute
-      setState({ step: 'computing', progress: 55 });
+      const taskId = '0x' + Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+      setState({ step: 'computing', progress: 55, taskId });
       await new Promise((r) => setTimeout(r, 2000));
-      setState({ step: 'computing', progress: 70 });
+      setState({ step: 'computing', progress: 70, taskId });
 
       // Step 4: Attest
       setState({ step: 'attesting', progress: 80 });
@@ -371,7 +372,7 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
 
             {/* Attestation */}
             {state.attestation && (
-              <AttestationVerifier attestation={state.attestation} />
+              <AttestationVerifier attestation={state.attestation} taskId={state.taskId} />
             )}
           </motion.div>
         )}

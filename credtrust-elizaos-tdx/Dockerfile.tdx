@@ -1,0 +1,27 @@
+# credtrust-elizaos-tdx/Dockerfile.tdx
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY agent/ ./agent/
+COPY tsconfig.json ./
+RUN npm run build
+
+# TDX Production Runtime
+FROM ghcr.io/iexecproject/tdx-base:latest
+
+# Copy built agent
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/agent ./agent
+
+WORKDIR /iexec_in
+ENV IEXEC_IN=/iexec_in \
+    IEXEC_OUT=/iexec_out \
+    NODE_ENV=production \
+    ELIZA_CHARACTER_PATH=/iexec_in/character.json
+
+# TDX Enclave Entrypoint
+ENTRYPOINT ["node", "/dist/agent.js"]

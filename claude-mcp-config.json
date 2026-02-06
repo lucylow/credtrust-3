@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "credtrust-elizaos": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm", "--init",
+        "-v", "/path/to/wallet:/app/keystore",
+        "-e", "PRIVATE_KEY_PATH=/app/keystore/wallet.json",
+        "credtrust/elizaos-tdx-agent:latest"
+      ]
+    }
+  }
+}

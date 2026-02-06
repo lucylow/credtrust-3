@@ -1,0 +1,19 @@
+{
+  "app": {
+    "owner": "0xYourWallet",
+    "name": "credtrust-elizaos-tdx-agent",
+    "type": "DOCKER",
+    "multiaddr": "yourdockerhub/credtrust-elizaos-tdx:latest",
+    "checksum": "0x...",
+    "mrenclave": {
+      "framework": "TDX"
+    }
+  },
+  "dataset": {
+    "owner": "0xYourWallet",
+    "name": "credtrust-character-config",
+    "type": "encrypted-http",
+    "multiaddr": "https://ipfs.io/ipfs/QmCharacterHash",
+    "checksum": "0x..."
+  }
+}

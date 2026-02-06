@@ -1,0 +1,27 @@
+# Multi-stage TDX build for ElizaOS agent
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY src/ ./src/
+COPY src/agents/credtrust-agent.character.json ./iexec_in/character
+RUN npm run build
+
+# TDX Runtime Stage
+FROM ghcr.io/iexecproject/tdx-base:latest
+
+# Install ElizaOS runtime
+COPY --from=builder /app/dist /app
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/iexec_in /iexec_in
+
+# TDX-specific env
+ENV IEXEC_IN=/iexec_in \
+    IEXEC_OUT=/iexec_out \
+    ELIZA_CHARACTER_PATH=/iexec_in/character
+
+EXPOSE 8080
+ENTRYPOINT ["/app/packages/core/dist/cli.js"]
+CMD ["start", "--characters=/iexec_in/character"]

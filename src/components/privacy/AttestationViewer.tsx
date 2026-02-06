@@ -3,6 +3,7 @@ import { Copy, Download, ExternalLink, Shield, FileCheck, Loader2 } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { usePrivacy } from '@/hooks/usePrivacy';
+import { getIExecExplorerUrl } from '@/lib/iexec-client';
 import { toast } from 'sonner';
 
 export default function AttestationViewer() {
@@ -143,9 +144,15 @@ export default function AttestationViewer() {
           <Download className="h-3.5 w-3.5" />
           Export
         </Button>
-        <Button variant="outline" size="sm" className="flex-1 gap-1.5">
-          <ExternalLink className="h-3.5 w-3.5" />
-          Explorer
+        <Button variant="outline" size="sm" className="flex-1 gap-1.5" asChild>
+          <a
+            href={latestAttestation.privacy_job_id ? getIExecExplorerUrl('task', latestAttestation.privacy_job_id) : getIExecExplorerUrl('address', latestAttestation.mrenclave)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+            Explorer
+          </a>
         </Button>
       </div>
     </motion.div>

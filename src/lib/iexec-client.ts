@@ -1,13 +1,29 @@
 import { IExec } from 'iexec';
 
+export const IEXEC_EXPLORER_URL = 'https://explorer.iex.ec/bellecour';
+
+export const getIExecExplorerUrl = (type: 'task' | 'deal' | 'address', id: string) => {
+  return `${IEXEC_EXPLORER_URL}/${type}/${id}`;
+};
+
 export class CredTrustIExecClient {
   private iexec: any;
   
   constructor() {
     // In a browser environment, we use window.ethereum
     if (typeof window !== 'undefined' && (window as any).ethereum) {
-      this.iexec = new IExec({ ethProvider: (window as any).ethereum });
+      try {
+        this.iexec = new IExec({ ethProvider: (window as any).ethereum });
+      } catch (error) {
+        console.warn('Failed to initialize iExec with window.ethereum, using mock mode', error);
+      }
+    } else {
+      console.warn('No ethereum provider found, iExec client will run in mock mode');
     }
+  }
+
+  private isMock() {
+    return !this.iexec;
   }
 
   async deployAppIfNeeded() {
@@ -22,6 +38,10 @@ export class CredTrustIExecClient {
   }
 
   async runCreditScoring(userData: any, modelId?: string) {
+    if (this.isMock()) {
+      console.log('Running mock credit scoring for', userData);
+      return { taskId: 'mock-task-' + Math.random().toString(36).slice(2, 9), dealId: 'mock-deal' };
+    }
     const appAddress = await this.deployAppIfNeeded();
     const datasetAddress = modelId || import.meta.env.VITE_IEXEC_DATASET_ADDRESS;
     

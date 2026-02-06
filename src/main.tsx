@@ -3,6 +3,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.tsx";
 import WalletProvider from "./wallet/provider.tsx";
 import "./index.css";
+import { lovableTagger } from "lovable-tagger";
+
+lovableTagger();
 
 const queryClient = new QueryClient();
 

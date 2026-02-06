@@ -1,0 +1,21 @@
+{
+  "app": {
+    "name": "credtrust-elizaos-tdx-agent",
+    "owner": "0xYourDeployerAddress",
+    "type": "DOCKER",
+    "dockerImage": "docker.io/yourusername/credtrust-elizaos-tdx:latest",
+    "checksum": "sha256-calculated-at-deploy-time"
+  },
+  "dataset": {
+    "name": "credtrust-agent-character",
+    "owner": "0xYourDeployerAddress",
+    "data": {
+      "name": "encrypted-character-config",
+      "url": "https://ipfs.io/ipfs/QmCharacterHash",
+      "checksum": "0xdatasetchecksum"
+    }
+  },
+  "workerpool": {
+    "name": "tdx-labs.pools.iexec.eth"
+  }
+}

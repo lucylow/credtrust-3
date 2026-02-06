@@ -1,0 +1,23 @@
+{
+  "name": "credtrust-elizaos-tdx",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && esbuild agent/src/index.ts --bundle --platform=node --outfile=dist/agent.js --format=esm",
+    "tdx:build": "docker build -f Dockerfile.tdx -t credtrust-elizaos-tdx:latest .",
+    "iexec:deploy": "./deploy.sh",
+    "iexec:run": "iexec app runappaddress --dataset datasetaddress --watch"
+  },
+  "dependencies": {
+    "elizaos": "^latest",
+    "@iexec/sdk": "^3.0.0",
+    "openai": "^4.0.0",
+    "viem": "^2.0.0",
+    "zod": "^3.22.0",
+    "supabase": "^2.45.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "esbuild": "^0.20.0"
+  }
+}

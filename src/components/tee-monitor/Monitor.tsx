@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ExternalLink } from 'lucide-react';
+import { getIExecExplorerUrl } from '@/lib/iexec-client';
 
 interface TeeJob {
   taskId: string;
@@ -50,10 +52,18 @@ export function TeeJobMonitor({ taskId }: { taskId: string }) {
       className="mt-6"
     >
       <Card className="bg-slate-900 border-slate-800">
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-mono text-slate-400">
-            TEE Task: {taskId.slice(0, 18)}...
+            TEE Task: {taskId.slice(0, 12)}...
           </CardTitle>
+          <a 
+            href={getIExecExplorerUrl('task', taskId)} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-500 hover:text-blue-400 transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+          </a>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-4">

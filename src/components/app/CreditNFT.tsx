@@ -2,14 +2,16 @@ import { motion } from 'framer-motion';
 import { Award, Shield, Clock, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useWallet } from '@/hooks/useWallet';
+import { getIExecExplorerUrl } from '@/lib/iexec-client';
 
 interface CreditNFTProps {
   score?: number;
   attestation?: string;
   tokenId?: string;
+  taskId?: string;
 }
 
-export default function CreditNFT({ score = 750, attestation, tokenId }: CreditNFTProps) {
+export default function CreditNFT({ score = 750, attestation, tokenId, taskId }: CreditNFTProps) {
   const { wallet } = useWallet();
 
   const getCreditScoreGradient = (creditScore: number) => {
@@ -140,9 +142,15 @@ export default function CreditNFT({ score = 750, attestation, tokenId }: CreditN
 
       {/* Actions */}
       <div className="flex gap-3 mt-6">
-        <Button variant="outline" className="flex-1 gap-2">
-          <ExternalLink className="h-4 w-4" />
-          View on Explorer
+        <Button variant="outline" className="flex-1 gap-2" asChild>
+          <a 
+            href={taskId ? getIExecExplorerUrl('task', taskId) : (attestation ? getIExecExplorerUrl('address', attestation) : '#')} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <ExternalLink className="h-4 w-4" />
+            View on Explorer
+          </a>
         </Button>
         <Button variant="hero" className="flex-1 gap-2">
           <Award className="h-4 w-4" />

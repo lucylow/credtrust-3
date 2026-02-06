@@ -24,6 +24,7 @@ const navItems = [
   { to: "/app/privacy", label: "Privacy", icon: Shield, badge: "New" },
   { to: "/app/tee", label: "TEE Demo", icon: Cpu, badge: "Live" },
   { to: "/app/nft", label: "My NFTs", icon: Wallet, badge: null },
+  { to: "/orchestration", label: "Multi-Agent", icon: Sparkles, badge: "New" },
 ];
 
 interface SidebarProps {
