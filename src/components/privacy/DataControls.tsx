@@ -1,28 +1,82 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Settings, Trash2, Download, Eye, EyeOff, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { usePrivacyStore } from '@/store/privacyStore';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function DataControls() {
-  const {
-    anonymizeData,
-    toggleAnonymize,
-    autoRevokeTokens,
-    toggleAutoRevoke,
-    deleteAllData,
-  } = usePrivacyStore();
+  const [anonymizeData, setAnonymizeData] = useState(true);
+  const [autoRevokeTokens, setAutoRevokeTokens] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleDeleteAll = () => {
-    if (confirm('Are you sure you want to delete all privacy data? This cannot be undone.')) {
-      deleteAllData();
+  const handleDeleteAll = async () => {
+    if (!confirm('Are you sure you want to delete all privacy data? This cannot be undone.')) {
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      // Delete all user's privacy data
+      const { error: tokensError } = await supabase
+        .from('disclosure_tokens')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all
+
+      const { error: attestationsError } = await supabase
+        .from('attestations')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000');
+
+      const { error: jobsError } = await supabase
+        .from('privacy_jobs')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000');
+
+      if (tokensError || attestationsError || jobsError) {
+        throw new Error('Failed to delete some data');
+      }
+
       toast.success('All privacy data deleted');
+    } catch (error) {
+      toast.error('Failed to delete data', { 
+        description: error instanceof Error ? error.message : 'Unknown error' 
+      });
+    } finally {
+      setIsDeleting(false);
     }
   };
 
-  const handleExport = () => {
-    toast.success('Exporting data...', { description: 'Your data export is being prepared.' });
+  const handleExport = async () => {
+    try {
+      const { data: jobs } = await supabase.from('privacy_jobs').select('*');
+      const { data: tokens } = await supabase.from('disclosure_tokens').select('*');
+      const { data: attestations } = await supabase.from('attestations').select('*');
+
+      const exportData = {
+        exportedAt: new Date().toISOString(),
+        privacyJobs: jobs || [],
+        disclosureTokens: tokens || [],
+        attestations: attestations || [],
+      };
+
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+        type: 'application/json',
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `privacy-export-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      toast.success('Data exported successfully');
+    } catch (error) {
+      toast.error('Export failed', { 
+        description: error instanceof Error ? error.message : 'Unknown error' 
+      });
+    }
   };
 
   return (
@@ -55,7 +109,7 @@ export default function DataControls() {
               </p>
             </div>
           </div>
-          <Switch checked={anonymizeData} onCheckedChange={toggleAnonymize} />
+          <Switch checked={anonymizeData} onCheckedChange={setAnonymizeData} />
         </div>
 
         {/* Auto-Revoke Tokens */}
@@ -69,7 +123,7 @@ export default function DataControls() {
               </p>
             </div>
           </div>
-          <Switch checked={autoRevokeTokens} onCheckedChange={toggleAutoRevoke} />
+          <Switch checked={autoRevokeTokens} onCheckedChange={setAutoRevokeTokens} />
         </div>
 
         {/* Action Buttons */}
@@ -82,9 +136,10 @@ export default function DataControls() {
             variant="destructive"
             className="flex-1 gap-2"
             onClick={handleDeleteAll}
+            disabled={isDeleting}
           >
             <Trash2 className="h-4 w-4" />
-            Delete All Data
+            {isDeleting ? 'Deleting...' : 'Delete All Data'}
           </Button>
         </div>
       </div>
