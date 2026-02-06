@@ -1,0 +1,11 @@
+# tdx/Dockerfile.tdx - Lift-and-shift / Experimental
+FROM ghcr.io/iexecproject/tdx-base:latest
+
+# Full ML stack (multi-GB memory!)
+RUN pip3 install tensorflow==2.19.0 torch scikit-learn pandas numpy fastapi
+
+WORKDIR /app
+COPY tdx/credit-agent.tdx.py /app/
+COPY entrypoint-tdx.sh /
+
+ENTRYPOINT ["/entrypoint-tdx.sh"]

@@ -1,5 +1,5 @@
 // src/websocket/hitl-server.ts
-import { WebSocketServer, WebSocket } from 'ws';
+import WebSocket, { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({ port: 8081 });
 

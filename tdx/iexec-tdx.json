@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "credtrust-tdx",
+    "docker": "yourdocker/credtrust-tdx:latest",
+    "mrenclave": {
+      "framework": "TDX"
+    }
+  },
+  "network": {
+    "chains": {
+      "134": {
+        "hub": "0x3671aE578E6fdF1439160BFB797746Cd61852881"
+      }
+    }
+  }
+}

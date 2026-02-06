@@ -50,18 +50,21 @@ export async function fetchMatchingOrders(
   const tagStr = tag?.toString() || TEE_TAGS.TEE.toString();
   
   const appOrders = await iexec.orderbook.fetchAppOrderbook(appAddress, {
-    tag: tagStr
+    minTag: tagStr,
+    maxTag: tagStr
   });
   
   let datasetOrders = null;
   if (datasetAddress) {
     datasetOrders = await iexec.orderbook.fetchDatasetOrderbook(datasetAddress, {
-      tag: tagStr
+      minTag: tagStr,
+      maxTag: tagStr
     });
   }
   
   const workerpoolOrders = await iexec.orderbook.fetchWorkerpoolOrderbook({
-    tag: tagStr
+    minTag: tagStr,
+    maxTag: tagStr
   });
 
   return {

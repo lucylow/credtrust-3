@@ -1,0 +1,26 @@
+[
+  {
+    "createdAt": "2026-02-06T10:00:00.000Z",
+    "requestorder": {
+      "app": "0x1234567890abcdef1234567890abcdef12345678",
+      "category": 0,
+      "params": "--wallet 0xabc...def"
+    },
+    "matchRes": {
+      "dealid": "0xdeal123456",
+      "taskid": "0xtask123456"
+    }
+  },
+  {
+    "createdAt": "2026-02-06T11:30:00.000Z",
+    "requestorder": {
+      "app": "0x1234567890abcdef1234567890abcdef12345678",
+      "category": 0,
+      "params": "--wallet 0x777...888"
+    },
+    "matchRes": {
+      "dealid": "0xdeal777888",
+      "taskid": "0xtask777888"
+    }
+  }
+]

@@ -1,0 +1,13 @@
+# sgx/Dockerfile.sgx - Lightweight / Proven
+FROM ghcr.io/iexecproject/sgx-base:latest
+
+# SGX-specific ML (memory constrained)
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && pip3 install scikit-learn==1.6.1 pandas numpy
+
+WORKDIR /app
+COPY sgx/credit-agent.sgx.py /app/
+COPY entrypoint-sgx.sh /
+
+ENTRYPOINT ["/entrypoint-sgx.sh"]

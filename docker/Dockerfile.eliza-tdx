@@ -1,0 +1,23 @@
+# docker/Dockerfile.eliza-tdx
+FROM ghcr.io/iexecproject/tdx-base:latest
+
+# Install Node.js 20 + npm
+RUN apt-get update && apt-get install -y \
+    curl gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production --no-optional
+
+# Copy ElizaOS agents
+COPY src/ ./src/
+COPY entrypoint-eliza-tdx.sh /entrypoint-eliza-tdx.sh
+
+ENV NODE_ENV=production \
+    IEXEC_OUT=/iexec_out
+
+RUN chmod +x /entrypoint-eliza-tdx.sh
+ENTRYPOINT ["/entrypoint-eliza-tdx.sh"]

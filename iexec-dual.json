@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "credtrust-dual-tee-selector",
+    "docker": "yourdocker/credtrust-dual:latest",
+    "mrenclave": {
+      "framework": "auto",
+      "sgx": {
+        "image": "yourdocker/credtrust-sgx:latest"
+      },
+      "tdx": {
+        "image": "yourdocker/credtrust-tdx:latest",
+        "workerpool": "tdx-labs.pools.iexec.eth"
+      }
+    }
+  }
+}

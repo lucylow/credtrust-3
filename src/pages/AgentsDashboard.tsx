@@ -24,21 +24,21 @@ export default function AgentsDashboard() {
   const [selectedTask, setSelectedTask] = useState<LiveTask | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 overflow-x-hidden">
+    <div className="relative">
       {/* Background gradients */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-emerald-500/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-purple-500/10 blur-[120px] rounded-full" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto p-8">
+      <div className="relative">
         {/* Header */}
         <motion.header 
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-6 pb-2">
+          <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-6 pb-2">
             ElizaOS AI Agents
           </h1>
           <div className="flex flex-wrap gap-4 justify-center mb-8 max-w-2xl mx-auto">
@@ -56,7 +56,7 @@ export default function AgentsDashboard() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-2xl flex items-center justify-center">
                 <span className="text-xl">🤖</span>
               </div>
@@ -76,7 +76,7 @@ export default function AgentsDashboard() {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
                 <span className="text-xl">⚡</span>
               </div>

@@ -13,12 +13,12 @@ export async function getPoCoReceipt(
   const task = await iexec.task.show(taskId);
 
   // Extract payment info from deal
-  const appPaid = BigInt(deal.app.price || 0);
-  const datasetPaid = BigInt(deal.dataset?.price || 0);
-  const workerPaid = BigInt(deal.workerpool.price || 0);
+  const appPaid = BigInt((deal.app as any).price || 0);
+  const datasetPaid = BigInt((deal.dataset as any)?.price || 0);
+  const workerPaid = BigInt((deal.workerpool as any).price || 0);
 
   // Determine enclave type from tags
-  const tag = deal.tag;
+  const tag = (deal as any).tag || "";
   let enclave: "SGX" | "TDX" | "NONE" = "NONE";
   
   // Basic tag mapping (iExec standard)

@@ -48,10 +48,10 @@ export const orchestrator = new StateGraph<AgentState>({
   .addNode('routeToAgent', async (state) => {
     switch (state.intent) {
       case 'credit_score':
-        const creditResult = await creditAgent.invoke(state);
+        const creditResult = await (creditAgent as any).compile().invoke(state);
         return { result: creditResult, messages: [{ role: 'assistant', content: 'Processing your credit score...' }] };
       case 'find_loan':
-        const lendingResult = await lendingAgent.invoke(state);
+        const lendingResult = await (lendingAgent as any).compile().invoke(state);
         return { result: lendingResult, messages: [{ role: 'assistant', content: 'Finding the best loan for you...' }] };
       case 'portfolio':
         // Risk agent monitoring call

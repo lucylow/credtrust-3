@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
  * Shows attestation hash and IPFS CID (if available).
  */
 
-const Step = ({ active, title, subtitle }: { active: boolean; title: string; subtitle?: string }) => (
+const Step = ({ active, title, subtitle }: { active: boolean; title: string; subtitle?: string; key?: string }) => (
   <div className={`flex items-center gap-3 p-3 rounded-md ${active ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
     <div className={`w-9 h-9 rounded-full flex items-center justify-center ${active ? 'bg-white text-indigo-600' : 'bg-gray-300 text-gray-700'}`}>{active ? '✓' : '•'}</div>
     <div>

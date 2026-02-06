@@ -32,34 +32,19 @@ const pageTransition = {
 
 export default function AppPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <FloatingParticles />
-      <AppHeader />
-      
-      <div className="flex min-h-[calc(100vh-4rem)]">
-        <Sidebar className="sticky top-16 h-[calc(100vh-4rem)]" />
-        
-        <main className="flex-1 overflow-auto">
-          <div className="container py-6 lg:py-8 max-w-6xl">
-            <Suspense fallback={<LoadingSkeleton type="card" count={3} />}>
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/" element={<DashboardPage />} />
-                  <Route path="/submit" element={<SubmitPage />} />
-                  <Route path="/nft" element={<NFTPage />} />
-                  <Route path="/marketplace" element={<MarketplacePage />} />
-                  <Route path="/analytics" element={<AnalyticsPage />} />
-                  <Route path="/slides" element={<SlidesPage />} />
-                  <Route path="/tee" element={<TEEPage />} />
-                  <Route path="/privacy" element={<PrivacyPage />} />
-                  <Route path="*" element={<Navigate to="/app" replace />} />
-                </Routes>
-              </AnimatePresence>
-            </Suspense>
-          </div>
-        </main>
-      </div>
-    </div>
+    <Suspense fallback={<LoadingSkeleton type="card" count={3} />}>
+      <Routes>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/submit" element={<SubmitPage />} />
+        <Route path="/nft" element={<NFTPage />} />
+        <Route path="/marketplace" element={<MarketplacePage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/slides" element={<SlidesPage />} />
+        <Route path="/tee" element={<TEEPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="*" element={<Navigate to="/app" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

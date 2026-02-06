@@ -62,9 +62,8 @@ export function createTelegramSDKs(privateKey?: string): SDKs {
 
   const provider = getWeb3Provider(pk);
   const dataProtector = new IExecDataProtectorCore(provider, {
-    ipfsUploadUrl: process.env.IEXEC_IPFS_UPLOAD,
     iexecOptions: { smsURL: process.env.IEXEC_SMS_URL }
-  });
+  } as any);
 
   const web3telegram = new IExecWeb3telegram(provider);
 

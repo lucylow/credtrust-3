@@ -27,7 +27,7 @@ async function getIexec(pk?: string): Promise<{ iexec: IExecSDK; wallet?: any }>
   const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_PROVIDER_URL);
   const signer = pk ? new ethers.Wallet(pk, provider) : undefined;
   // IExec expects an ethProvider or signer. Pass signer.privateKey via getWeb3Provider if necessary.
-  const iexec = new IExec({ ethProvider: signer || provider });
+  const iexec = new IExec({ ethProvider: (signer || provider) as any });
   return { iexec, wallet: signer };
 }
 

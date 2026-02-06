@@ -3,6 +3,7 @@ import { AgentStatus } from '@/lib/mockData';
 
 interface AgentCardProps {
   agent: AgentStatus;
+  key?: any;
 }
 
 export function AgentCard({ agent }: AgentCardProps) {

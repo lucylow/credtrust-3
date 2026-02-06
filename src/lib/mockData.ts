@@ -66,6 +66,36 @@ export const MOCK_AGENTS: AgentStatus[] = [
     task: 'Portfolio LTV: 72%',
     progress: 0,
     startedAt: Date.now() - 300000
+  },
+  {
+    id: 'agent-4',
+    name: 'Yield Optimizer',
+    type: 'lending',
+    status: 'analyzing',
+    confidence: 0.91,
+    task: 'Scanning Aave V3 markets',
+    progress: 42,
+    startedAt: Date.now() - 15000
+  },
+  {
+    id: 'agent-5',
+    name: 'Protocol Guard',
+    type: 'orchestrator',
+    status: 'idle',
+    confidence: 0.99,
+    task: 'Monitoring smart contract events',
+    progress: 0,
+    startedAt: Date.now() - 600000
+  },
+  {
+    id: 'agent-6',
+    name: 'Compliance Officer',
+    type: 'risk',
+    status: 'completed',
+    confidence: 0.95,
+    task: 'KYC Verification 0x882...1122',
+    progress: 100,
+    startedAt: Date.now() - 180000
   }
 ];
 
@@ -80,6 +110,26 @@ export const MOCK_LIVE_TASKS: LiveTask[] = [
       { agent: 'lending', status: 'waiting-hitl', timestamp: Date.now() - 15000 }
     ],
     hitlRequired: true
+  },
+  {
+    sessionId: 'session-882-991',
+    goal: 'Assess risk for portfolio 0x77...bb2',
+    route: { agent: 'risk', confidence: 0.92 },
+    timeline: [
+      { agent: 'orchestrator', status: 'routing', timestamp: Date.now() - 300000 },
+      { agent: 'risk', status: 'completed', timestamp: Date.now() - 120000, result: { riskLevel: 'low', ltv: 0.65 } }
+    ],
+    hitlRequired: false
+  },
+  {
+    sessionId: 'session-tx-442',
+    goal: 'Execute automated rebalance',
+    route: { agent: 'execution', confidence: 0.99 },
+    timeline: [
+      { agent: 'orchestrator', status: 'routing', timestamp: Date.now() - 10000 },
+      { agent: 'execution', status: 'analyzing', timestamp: Date.now() - 5000 }
+    ],
+    hitlRequired: false
   }
 ];
 

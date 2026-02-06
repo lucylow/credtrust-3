@@ -15,21 +15,21 @@ export default function MultiAgentDashboard() {
   const activeTasks = tasks.filter(t => t.status !== 'COMPLETED');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-emerald-900/20 overflow-hidden text-white">
-      <div className="max-w-8xl mx-auto p-8 relative">
-        {/* Background Animation */}
-        <div className="fixed inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        </div>
+    <div className="relative">
+      {/* Background Animation */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
 
+      <div className="relative z-10">
         {/* Header */}
         <motion.header 
           initial={{ opacity: 0, y: -60 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center mb-20"
+          className="text-center mb-12"
         >
-          <h1 className="text-7xl font-black bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-8 drop-shadow-2xl py-2">
+          <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-8 drop-shadow-2xl py-2 leading-tight">
             Multi-Agent Orchestration
           </h1>
           <div className="flex flex-wrap gap-6 justify-center max-w-4xl mx-auto mb-12">
@@ -38,7 +38,7 @@ export default function MultiAgentDashboard() {
         </motion.header>
 
         {/* Tabs */}
-        <div className="flex bg-white/5 backdrop-blur-xl rounded-3xl p-1 mb-12 border border-white/20 shadow-2xl max-w-2xl mx-auto relative z-10">
+        <div className="flex bg-card/50 backdrop-blur-xl rounded-3xl p-1 mb-12 border border-border shadow-2xl max-w-2xl mx-auto relative z-10">
           {[
             { id: 'overview' as const, label: 'Overview', icon: '📊' },
             { id: 'tasks' as const, label: `Tasks (${activeTasks.length})`, icon: '⚡' },
@@ -50,7 +50,7 @@ export default function MultiAgentDashboard() {
               className={`flex-1 py-4 px-6 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                 activeTab === tab.id
                   ? 'bg-gradient-to-r from-emerald-500 to-blue-600 text-white shadow-lg shadow-emerald-500/25'
-                  : 'text-white/70 hover:text-white hover:bg-white/10'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
               }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

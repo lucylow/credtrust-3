@@ -4,6 +4,8 @@ import { IExecSDK } from '@iexec/sdk';
 
 export class CredTrustAgent extends ElizaAgent {
   private iexec: IExecSDK;
+  public memory: any;
+  public llm: any;
   
   constructor(characterPath: string) {
     super(characterPath);
@@ -13,7 +15,7 @@ export class CredTrustAgent extends ElizaAgent {
   @AgentAction('wallet_monitoring')
   async monitorWallet(address: string) {
     // Autonomous wallet observation
-    const activity = await this.fetchWalletMetrics(address);
+    const activity: any = await this.fetchWalletMetrics(address);
     
     this.memory.save('wallet_' + address, {
       lastObserved: Date.now(),
@@ -22,7 +24,7 @@ export class CredTrustAgent extends ElizaAgent {
       balanceUSD: activity.balance
     });
     
-    return `Wallet ${address.slice(0,6)}... monitored. ${activity.txCount} txs, $${activity.balance} exposure.`;
+    return `Wallet ${address.slice(0,6)}... monitored. ${activity.transactions} txs, $${activity.balance} exposure.`;
   }
 
   @AgentAction('credit_scoring')
@@ -70,9 +72,13 @@ export class CredTrustAgent extends ElizaAgent {
 }
 
 function AgentAction(name: string) {
-    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {};
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+        return descriptor;
+    };
 }
 
 function AgentEvaluator(name: string) {
-    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {};
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+        return descriptor;
+    };
 }

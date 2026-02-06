@@ -9,6 +9,7 @@ interface StepProps {
   status: 'pending' | 'active' | 'completed' | 'failed';
   description: string;
   onStepClick?: (label: string) => void;
+  key?: number;
 }
 
 const Step = ({ icon, label, status, description, onStepClick }: StepProps) => {

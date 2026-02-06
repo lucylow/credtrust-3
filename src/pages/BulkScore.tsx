@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Users, Play, Download, CheckCircle2, Clock } from 'lucide-react';
 
-const MOCK_USERS = Array.from({ length: 10 }, (_, i) => ({
+const MOCK_USERS = Array.from({ length: 25 }, (_, i) => ({
   id: `user_${i + 1}`,
   address: `0x${Math.random().toString(16).slice(2, 10)}...${Math.random().toString(16).slice(2, 6)}`,
-  status: 'idle',
-  score: null,
+  status: Math.random() > 0.8 ? 'completed' : 'idle',
+  score: Math.random() > 0.8 ? Math.floor(Math.random() * (850 - 600) + 600) : null,
 }));
 
 export default function BulkScore() {
@@ -50,17 +50,17 @@ export default function BulkScore() {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="flex justify-between items-center mb-8">
+    <div className="py-4 px-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Bulk Credit Scoring</h1>
-          <p className="text-slate-400">Process hundreds of users simultaneously using iExec's distributed workerpools.</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Bulk Credit Scoring</h1>
+          <p className="text-muted-foreground">Process hundreds of users simultaneously using iExec's distributed workerpools.</p>
         </div>
         <div className="flex gap-4">
           <Button 
             onClick={runBulkScoring} 
             disabled={isProcessing}
-            className="bg-emerald-600 hover:bg-emerald-700"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white"
           >
             <Play className="w-4 h-4 mr-2" />
             Run Bulk TEE Jobs
@@ -72,36 +72,36 @@ export default function BulkScore() {
         </div>
       </div>
 
-      <Card className="bg-slate-900 border-slate-800">
-        <CardContent className="p-0">
+      <Card className="bg-card border-border">
+        <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="border-slate-800 hover:bg-transparent">
-                <TableHead className="text-slate-400">User ID</TableHead>
-                <TableHead className="text-slate-400">Wallet Address</TableHead>
-                <TableHead className="text-slate-400">TEE Status</TableHead>
-                <TableHead className="text-slate-400">Credit Score</TableHead>
-                <TableHead className="text-slate-400">Risk Tier</TableHead>
+              <TableRow className="border-border hover:bg-transparent">
+                <TableHead className="text-muted-foreground">User ID</TableHead>
+                <TableHead className="text-muted-foreground">Wallet Address</TableHead>
+                <TableHead className="text-muted-foreground">TEE Status</TableHead>
+                <TableHead className="text-muted-foreground">Credit Score</TableHead>
+                <TableHead className="text-muted-foreground">Risk Tier</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <AnimatePresence>
                 {users.map((user) => (
-                  <TableRow key={user.id} className="border-slate-800 hover:bg-slate-800/50">
-                    <TableCell className="font-medium text-slate-300">{user.id}</TableCell>
-                    <TableCell className="font-mono text-xs text-slate-500">{user.address}</TableCell>
+                  <TableRow key={user.id} className="border-border hover:bg-muted/50">
+                    <TableCell className="font-medium text-foreground">{user.id}</TableCell>
+                    <TableCell className="font-mono text-xs text-muted-foreground">{user.address}</TableCell>
                     <TableCell>
                       {user.status === 'idle' && (
-                        <Badge variant="secondary" className="bg-slate-800 text-slate-400">Idle</Badge>
+                        <Badge variant="secondary" className="bg-muted text-muted-foreground border-none">Idle</Badge>
                       )}
                       {user.status === 'processing' && (
-                        <Badge variant="secondary" className="bg-blue-900/50 text-blue-400 animate-pulse">
+                        <Badge variant="secondary" className="bg-blue-500/10 text-blue-500 animate-pulse border-blue-500/20">
                           <Clock className="w-3 h-3 mr-1" />
                           Processing
                         </Badge>
                       )}
                       {user.status === 'completed' && (
-                        <Badge variant="default" className="bg-emerald-900/50 text-emerald-400">
+                        <Badge variant="default" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20">
                           <CheckCircle2 className="w-3 h-3 mr-1" />
                           Completed
                         </Badge>
@@ -109,9 +109,9 @@ export default function BulkScore() {
                     </TableCell>
                     <TableCell>
                       {user.score ? (
-                        <span className="font-bold text-white">{user.score}</span>
+                        <span className="font-bold text-foreground">{user.score}</span>
                       ) : (
-                        <span className="text-slate-600">--</span>
+                        <span className="text-muted-foreground">--</span>
                       )}
                     </TableCell>
                     <TableCell>
@@ -124,7 +124,7 @@ export default function BulkScore() {
                           Tier {getTier(user.score)}
                         </Badge>
                       ) : (
-                        <span className="text-slate-600">--</span>
+                        <span className="text-muted-foreground">--</span>
                       )}
                     </TableCell>
                   </TableRow>
