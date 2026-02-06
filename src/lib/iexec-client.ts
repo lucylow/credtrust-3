@@ -64,6 +64,9 @@ export class CredTrustIExecClient {
   }
 
   async waitForTaskResult(taskId: string) {
+    if (this.isMock() || taskId.startsWith('mock-')) {
+      return { status: 'COMPLETED', task: { taskId, result: 'mock-result' } };
+    }
     return await this.iexec.task.waitForTaskStatus(taskId, 'COMPLETED');
   }
 
