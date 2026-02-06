@@ -7,13 +7,10 @@ import ThemeToggle from '@/components/ui/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { to: '/app', label: 'Dashboard' },
-  { to: '/chat', label: 'AI Chat' },
-  { to: '/app/submit', label: 'Submit Data' },
-  { to: '/app/marketplace', label: 'Marketplace' },
-  { to: '/app/analytics', label: 'Analytics' },
-  { to: '/app/tee', label: 'TEE Demo' },
-  { to: '/app/nft', label: 'My NFTs' },
+  { to: '/app', label: 'App' },
+  { to: '/dashboard', label: 'AI Agents' },
+  { to: '/orchestration', label: 'Orchestration' },
+  { to: '/chat', label: 'Chat' },
 ];
 
 export default function AppHeader() {

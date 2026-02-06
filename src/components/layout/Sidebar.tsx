@@ -17,14 +17,13 @@ import {
 
 const navItems = [
   { to: "/app", label: "Dashboard", icon: LayoutDashboard, badge: null },
-  { to: "/chat", label: "AI Chat", icon: MessageSquare, badge: "AI" },
-  { to: "/app/submit", label: "Submit Data", icon: FileUp, badge: null },
-  { to: "/app/marketplace", label: "Marketplace", icon: Store, badge: "12" },
-  { to: "/app/analytics", label: "Analytics", icon: BarChart3, badge: null },
-  { to: "/app/privacy", label: "Privacy", icon: Shield, badge: "New" },
-  { to: "/app/tee", label: "TEE Demo", icon: Cpu, badge: "Live" },
-  { to: "/app/nft", label: "My NFTs", icon: Wallet, badge: null },
+  { to: "/dashboard", label: "Eliza Agents", icon: Cpu, badge: "AI" },
   { to: "/orchestration", label: "Multi-Agent", icon: Sparkles, badge: "New" },
+  { to: "/chat", label: "AI Chat", icon: MessageSquare, badge: null },
+  { to: "/bulk-score", label: "Bulk Scoring", icon: BarChart3, badge: null },
+  { to: "/app/marketplace", label: "Marketplace", icon: Store, badge: "12" },
+  { to: "/app/privacy", label: "Privacy", icon: Shield, badge: null },
+  { to: "/app/nft", label: "My NFTs", icon: Wallet, badge: null },
 ];
 
 interface SidebarProps {

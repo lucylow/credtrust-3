@@ -14,8 +14,8 @@ const Header = () => {
     { href: "#problem", label: "Problem" },
     { href: "#solution", label: "Solution" },
     { href: "#features", label: "Features" },
+    { href: "/app", label: "Enter App" },
     { href: "/dashboard", label: "AI Dashboard" },
-    { href: "/orchestration", label: "Orchestration" },
     { href: "#hackathon", label: "Hackathon" },
   ];
 
