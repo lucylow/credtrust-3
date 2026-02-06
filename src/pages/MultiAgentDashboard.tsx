@@ -73,7 +73,10 @@ export default function MultiAgentDashboard() {
             >
               <AgentGrid agents={agents.slice(0, 6)} />
               <div className="space-y-8">
-                <PoCoFlow taskStatus={activeTasks[0]?.status} />
+                <PoCoFlow 
+                  taskStatus={activeTasks[0]?.status} 
+                  onStepClick={() => activeTasks[0] && setDebugTask(activeTasks[0])}
+                />
                 <div onClick={() => activeTasks[0] && setDebugTask(activeTasks[0])} className="cursor-pointer">
                   <TaskTimeline tasks={activeTasks.slice(0, 3)} />
                 </div>
@@ -90,7 +93,17 @@ export default function MultiAgentDashboard() {
               exit={{ opacity: 0, y: -30 }}
               className="relative z-10"
             >
-              <TaskGrid tasks={tasks} />
+              <div onClick={(e) => {
+                const target = e.target as HTMLElement;
+                const taskCard = target.closest('[data-task-id]');
+                if (taskCard) {
+                  const taskId = taskCard.getAttribute('data-task-id');
+                  const task = tasks.find(t => t.id === taskId);
+                  if (task) setDebugTask(task);
+                }
+              }} className="cursor-pointer">
+                <TaskGrid tasks={tasks} />
+              </div>
             </motion.section>
           )}
           

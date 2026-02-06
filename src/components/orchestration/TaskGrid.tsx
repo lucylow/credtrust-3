@@ -11,6 +11,7 @@ export function TaskGrid({ tasks }: TaskGridProps) {
       {tasks.map((task, i) => (
         <motion.div
           key={task.id}
+          data-task-id={task.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1 }}

@@ -17,9 +17,13 @@ export function AgentGrid({ agents }: AgentGridProps) {
           className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 hover:border-white/20 transition-all group relative overflow-hidden"
         >
           <div className="flex items-start gap-4 relative z-10">
-            <div className="text-4xl bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner">
+            <motion.div 
+              whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+              className="text-4xl bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner cursor-help"
+              title={`Framework: ${agent.framework || 'Custom'}`}
+            >
               {agent.avatar}
-            </div>
+            </motion.div>
             <div className="flex-1">
               <div className="flex justify-between items-start">
                 <div>

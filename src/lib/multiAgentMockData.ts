@@ -108,10 +108,41 @@ export const MOCK_AGENTS: Agent[] = [
     name: 'Master Orchestrator',
     type: 'orchestrator',
     avatar: '🎛️',
-    status: 'routing',
+    status: 'idle',
     confidence: 1.0,
     priority: 0,
     capabilities: ['task-decomposition', 'agent-coordination', 'dynamic-routing']
+  },
+  {
+    id: 'credit-2',
+    name: 'Whale Tracker Epsilon',
+    type: 'credit',
+    avatar: '🐋',
+    status: 'planning',
+    confidence: 0.92,
+    priority: 5,
+    capabilities: ['whale-monitoring', 'liquidity-tracking', 'large-loan-risk'],
+    framework: 'Keras 3.0'
+  },
+  {
+    id: 'lending-2',
+    name: 'Yield Hunter Zeta',
+    type: 'lending',
+    avatar: '🚜',
+    status: 'idle',
+    confidence: 0.85,
+    priority: 6,
+    capabilities: ['yield-farming', 'cross-chain-lending', 'staking-optimization']
+  },
+  {
+    id: 'risk-2',
+    name: 'Fraud Sentry Theta',
+    type: 'risk',
+    avatar: '👁️',
+    status: 'executing',
+    confidence: 0.98,
+    priority: 7,
+    capabilities: ['sybil-detection', 'aml-compliance', 'wash-trading-analysis']
   }
 ];
 
@@ -178,6 +209,67 @@ export const MOCK_TASKS: Task[] = [
       executionTime: 32,
       hitlRequired: false
     }
+  },
+  {
+    id: 'task-004',
+    sessionId: 'user-diana-004',
+    goal: 'Detect wash trading activity for collection 0x8888...',
+    status: 'RUNNING',
+    route: {
+      primaryAgent: 'risk-2',
+      backupAgent: 'credit-2',
+      confidence: 0.95
+    },
+    timeline: [
+      { agentId: 'orchestrator-1', step: 'Protocol routing', status: 'COMPLETED', timestamp: Date.now() - 60000, duration: 0.5 },
+      { agentId: 'risk-2', step: 'Pattern analysis', status: 'COMPUTING', timestamp: Date.now() - 45000 }
+    ],
+    metrics: {
+      estimatedCost: 0.08,
+      executionTime: 300,
+      hitlRequired: false
+    }
+  },
+  {
+    id: 'task-005',
+    sessionId: 'user-eve-005',
+    goal: 'Bridge 10 ETH to Arbitrum and stake in GMX',
+    status: 'INITIALIZED',
+    route: {
+      primaryAgent: 'execution-1',
+      backupAgent: 'lending-2',
+      confidence: 0.99
+    },
+    timeline: [
+      { agentId: 'orchestrator-1', step: 'Task decomposition', status: 'COMPLETED', timestamp: Date.now() - 10000, duration: 1.1 },
+      { agentId: 'execution-1', step: 'Bridge initiation', status: 'STARTING', timestamp: Date.now() }
+    ],
+    metrics: {
+      estimatedCost: 0.15,
+      executionTime: 600,
+      hitlRequired: true
+    }
+  },
+  {
+    id: 'task-006',
+    sessionId: 'user-frank-006',
+    goal: 'Audit smart contract 0xdead... for reentrancy vulnerabilities',
+    status: 'CONTRIBUTION_TIMEOUT',
+    failureCause: 'ENCLAVE_COMPUTE_NODE_OFFLINE',
+    route: {
+      primaryAgent: 'risk-1',
+      backupAgent: 'risk-2',
+      confidence: 0.91
+    },
+    timeline: [
+      { agentId: 'risk-1', step: 'Static analysis', status: 'COMPUTED', timestamp: Date.now() - 500000, duration: 15.2 },
+      { agentId: 'risk-1', step: 'Symbolic execution', status: 'COMPUTE_FAILED', timestamp: Date.now() - 400000, failureCause: 'ENCLAVE_COMPUTE_NODE_OFFLINE' }
+    ],
+    metrics: {
+      estimatedCost: 0.25,
+      executionTime: 1200,
+      hitlRequired: false
+    }
   }
 ];
 
@@ -186,11 +278,11 @@ export function useMultiAgentMockData() {
   const [agents, setAgents] = useState<Agent[]>(MOCK_AGENTS);
   const [tasks, setTasks] = useState<Task[]>(MOCK_TASKS);
   const [stats, setStats] = useState({
-    activeAgents: 3,
-    liveTasks: 2,
-    totalSessions: 47,
-    rlcSpent: 2.34,
-    hitlInterventions: 12
+    activeAgents: 5,
+    liveTasks: 3,
+    totalSessions: 89,
+    rlcSpent: 4.12,
+    hitlInterventions: 24
   });
 
   useEffect(() => {
@@ -230,8 +322,8 @@ export function useMultiAgentMockData() {
       // Update stats
       setStats(prev => ({
         ...prev,
-        activeAgents: Math.floor(Math.random() * 5) + 1,
-        liveTasks: Math.floor(Math.random() * 4) + 1,
+        activeAgents: Math.floor(Math.random() * 8) + 1,
+        liveTasks: Math.floor(Math.random() * 6) + 1,
         rlcSpent: Number((prev.rlcSpent + Math.random() * 0.01).toFixed(2))
       }));
     }, 2500);

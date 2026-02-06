@@ -8,28 +8,36 @@ interface StepProps {
   label: string;
   status: 'pending' | 'active' | 'completed' | 'failed';
   description: string;
+  onStepClick?: (label: string) => void;
 }
 
-const Step = ({ icon, label, status, description }: StepProps) => {
+const Step = ({ icon, label, status, description, onStepClick }: StepProps) => {
   const isCompleted = status === 'completed';
   const isActive = status === 'active';
   const isFailed = status === 'failed';
 
   return (
-    <div className="flex flex-col items-center text-center space-y-3 relative z-10">
-      <div className={`
-        w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500
-        ${isCompleted ? 'bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.4)]' : 
-          isActive ? 'bg-blue-500 animate-pulse shadow-[0_0_20px_rgba(59,130,246,0.4)]' : 
-          isFailed ? 'bg-red-500 shadow-[0_0_20px_rgba(239,68,68,0.4)]' :
-          'bg-white/10 grayscale'}
-      `}>
+    <div 
+      onClick={() => onStepClick?.(label)}
+      className={`flex flex-col items-center text-center space-y-3 relative z-10 ${onStepClick ? 'cursor-pointer group/step-node' : ''}`}
+    >
+      <motion.div 
+        whileHover={onStepClick ? { scale: 1.1, y: -5 } : {}}
+        className={`
+          w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500
+          ${isCompleted ? 'bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.4)]' : 
+            isActive ? 'bg-blue-500 animate-pulse shadow-[0_0_20px_rgba(59,130,246,0.4)]' : 
+            isFailed ? 'bg-red-500 shadow-[0_0_20px_rgba(239,68,68,0.4)]' :
+            'bg-white/10 grayscale'}
+          ${onStepClick ? 'group-hover/step-node:ring-2 ring-white/20' : ''}
+        `}
+      >
         {React.cloneElement(icon as React.ReactElement, { 
           className: `w-8 h-8 ${isCompleted || isActive || isFailed ? 'text-white' : 'text-white/40'}` 
         })}
-      </div>
+      </motion.div>
       <div className="space-y-1">
-        <h4 className={`font-bold transition-colors ${isCompleted || isActive || isFailed ? 'text-white' : 'text-white/40'}`}>
+        <h4 className={`font-bold transition-colors ${isCompleted || isActive || isFailed ? 'text-white' : 'text-white/40'} ${onStepClick ? 'group-hover/step-node:text-emerald-400' : ''}`}>
           {label}
         </h4>
         <p className="text-[10px] text-white/40 max-w-[120px] leading-tight uppercase tracking-wider font-mono">
@@ -40,7 +48,7 @@ const Step = ({ icon, label, status, description }: StepProps) => {
   );
 };
 
-export const PoCoFlow = ({ taskStatus = 'RECEIVED' }: { taskStatus?: PoCoTaskStatus }) => {
+export const PoCoFlow = ({ taskStatus = 'RECEIVED', onStepClick }: { taskStatus?: PoCoTaskStatus, onStepClick?: (label: string) => void }) => {
   const getStatus = (targetStatuses: PoCoTaskStatus[], current: PoCoTaskStatus) => {
     const statusOrder: PoCoTaskStatus[] = [
       'RECEIVED', 'INITIALIZING', 'INITIALIZED', 'RUNNING', 'CONSENSUS_REACHED', 
@@ -131,7 +139,7 @@ export const PoCoFlow = ({ taskStatus = 'RECEIVED' }: { taskStatus?: PoCoTaskSta
         />
 
         {steps.map((step, index) => (
-          <Step key={index} {...step} />
+          <Step key={index} {...step} onStepClick={onStepClick} />
         ))}
       </div>
 
