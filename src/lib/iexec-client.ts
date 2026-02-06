@@ -1,4 +1,7 @@
 import { IExec } from 'iexec';
+import { canWorkerRunTask } from '../workers/constraints';
+import { DEFAULT_WORKER } from '../workers/capabilities';
+import { simulateWorkerExecution } from '../workers/simulator';
 
 export const IEXEC_EXPLORER_URL = 'https://explorer.iex.ec/bellecour';
 
@@ -38,9 +41,27 @@ export class CredTrustIExecClient {
   }
 
   async runCreditScoring(userData: any, modelId?: string) {
+    const selectedCategory = userData.categoryId || 2; // Default to 'M'
+    
+    if (!canWorkerRunTask(DEFAULT_WORKER, selectedCategory)) {
+      throw new Error(
+        `No compatible iExec worker available for selected category (Category ${selectedCategory})`
+      );
+    }
+
     if (this.isMock()) {
       console.log('Running mock credit scoring for', userData);
-      return { taskId: 'mock-task-' + Math.random().toString(36).slice(2, 9), dealId: 'mock-deal' };
+      const taskId = 'mock-task-' + Math.random().toString(36).slice(2, 9);
+      
+      // Simulate worker execution alongside the mock response
+      const workerSummary = await simulateWorkerExecution({ taskId, categoryId: selectedCategory });
+      console.log('Worker execution simulated:', workerSummary);
+      
+      return { 
+        taskId, 
+        dealId: 'mock-deal',
+        workerSummary 
+      };
     }
     const appAddress = await this.deployAppIfNeeded();
     const datasetAddress = modelId || import.meta.env.VITE_IEXEC_DATASET_ADDRESS;

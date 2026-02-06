@@ -93,6 +93,7 @@ CredTrust-3 is now supercharged with advanced iExec features:
 - **Web3Mail/Telegram**: Confidential notifications sent via iExec Web3Mail without exposing user contact info.
 - **Account Abstraction**: Gasless TEE requests sponsored by iExec Paymaster.
 - **Monetization**: Data providers can monetize their datasets using iExec Data Protector's signed orders.
+- **Worker-Aware Execution**: Explicit modeling of iExec workers, including staking requirements, resource constraints (CPU/RAM), and reward/slashing logic.
 
 ### 📩 Confidential Messaging Workflow
 ```mermaid
@@ -141,6 +142,15 @@ graph TD
 | **B** | 700-749 | 8.0% | 70% | `CredProofNFT_B` |
 | **C** | 650-699 | 12.5% | 50% | `CredProofNFT_C` |
 | **D** | <650 | 22.0% | 30% | `CredProofNFT_D` |
+
+## ⚙️ Execution Workers (iExec)
+
+CredTrust explicitly models the "Supply Side" of confidential computing to ensure production realism.
+
+- **Independent Actors**: Workers are decentralized providers who stake RLC to participate in the network.
+- **Resource Constraints**: Tasks are mapped to iExec categories (S, M, L, XL). CredTrust ensures workers meet the CPU and RAM requirements before dispatching tasks.
+- **Economic Security**: The iExec Proof-of-Contribution (PoCo) protocol enforces rewards for honest computation and slashing for malicious behavior or failures.
+- **TEE Verification**: Every execution happens inside an Intel SGX or TDX enclave, providing hardware-level privacy guarantees.
 
 ## 🤝 Contributing
 
