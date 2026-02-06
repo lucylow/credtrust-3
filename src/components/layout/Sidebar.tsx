@@ -11,11 +11,13 @@ import {
   Cpu,
   Wallet,
   Sparkles,
+  MessageSquare,
   ExternalLink,
 } from "lucide-react";
 
 const navItems = [
   { to: "/app", label: "Dashboard", icon: LayoutDashboard, badge: null },
+  { to: "/chat", label: "AI Chat", icon: MessageSquare, badge: "AI" },
   { to: "/app/submit", label: "Submit Data", icon: FileUp, badge: null },
   { to: "/app/marketplace", label: "Marketplace", icon: Store, badge: "12" },
   { to: "/app/analytics", label: "Analytics", icon: BarChart3, badge: null },

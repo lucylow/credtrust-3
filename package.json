@@ -17,7 +17,10 @@
     "send:campaign:telegram": "ts-node scripts/web3-messaging/prepare_and_send_campaign_telegram.ts",
     "fetch:contacts": "ts-node scripts/web3-messaging/fetch_contacts.ts",
     "deploy-registry": "hardhat run --network localhost scripts/deploy_encrypted_registry.js",
-    "demo": "node scripts/demo_flow.js"
+    "demo": "node scripts/demo_flow.js",
+    "tee:simulate": "ts-node scripts/enclave_simulator/generate_and_sign_attestation.ts",
+    "tee:submit": "ts-node scripts/enclave_simulator/submit_attestation_onchain.ts",
+    "tee:deploy": "hardhat run scripts/deploy_attestation_registry.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.47",

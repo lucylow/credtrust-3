@@ -52,6 +52,30 @@ export class CredTrustIExecClient {
     const jobs = users.map(user => this.runCreditScoring(user));
     return Promise.all(jobs);
   }
+
+  async agentTEECompute(agentId: string, input: any) {
+    // Enhanced agent-aware TEE call
+    const appAddress = await this.deployAppIfNeeded();
+    console.log(`Agent ${agentId} requesting TEE compute with input`, input);
+    
+    // In a real scenario, different agents might use different iExec datasets or apps
+    const datasetAddress = agentId === 'credit' 
+      ? import.meta.env.VITE_IEXEC_CREDIT_DATASET 
+      : import.meta.env.VITE_IEXEC_RISK_DATASET;
+
+    try {
+      // Mocking the TEE execution for the agent workflow
+      return {
+        status: 'SUCCESS',
+        result: { score: 720, confidence: 0.98 },
+        proof: '0x' + Math.random().toString(16).slice(2),
+        agentId
+      };
+    } catch (error) {
+      console.error(`Error in agent ${agentId} TEE compute:`, error);
+      throw error;
+    }
+  }
 }
 
 export const iexecClient = new CredTrustIExecClient();

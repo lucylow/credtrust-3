@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, Shield, Zap, ArrowRight, Activity, Clock, CheckCircle2 } from 'lucide-react';
+import { TrendingUp, Users, Shield, Zap, ArrowRight, Activity, Clock, CheckCircle2, MessageSquare, AlertTriangle } from 'lucide-react';
 import StatCard from '@/components/ui/StatCard';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { StaggerContainer, StaggerItem } from '@/components/layout/PageTransition';
 import { getRecentActivity } from '@/mocks/analyticsData';
 import { cn } from '@/lib/utils';
@@ -85,6 +87,36 @@ export default function Dashboard() {
             delay={index * 0.1}
           />
         ))}
+      </motion.div>
+
+      {/* Agent Alerts */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        className="relative overflow-hidden p-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 to-transparent backdrop-blur-sm"
+      >
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-primary/20 rounded-xl text-primary animate-pulse">
+              <Zap size={24} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-[10px] uppercase font-bold text-primary border-primary/30">RiskAgent Alert</Badge>
+                <span className="text-xs text-muted-foreground">Just now</span>
+              </div>
+              <h3 className="text-lg font-bold mt-1">LTV Warning: High Risk Detected</h3>
+              <p className="text-sm text-muted-foreground">Your loan in PoolY has reached 85% LTV. RiskAgent suggests rebalancing.</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="hero" size="sm" className="h-10 px-6" onClick={() => window.location.href='/chat'}>
+              <MessageSquare size={16} className="mr-2" /> Ask Agent to Fix
+            </Button>
+            <Button variant="outline" size="sm" className="h-10">Dismiss</Button>
+          </div>
+        </div>
       </motion.div>
 
       {/* Quick Actions */}

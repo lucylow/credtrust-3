@@ -112,16 +112,16 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <Button variant="hero" size="xl" asChild>
-                <Link to="/app">
-                  Launch App
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <Link to="/chat">
+                  Launch AI Chat
+                  <Zap className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
-                <a href="#demo">
-                  <PlayCircle className="h-5 w-5" />
-                  Watch Demo
-                </a>
+                <Link to="/app">
+                  Go to Dashboard
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
             </motion.div>
 

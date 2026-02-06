@@ -8,10 +8,10 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { to: '/app', label: 'Dashboard' },
+  { to: '/chat', label: 'AI Chat' },
   { to: '/app/submit', label: 'Submit Data' },
   { to: '/app/marketplace', label: 'Marketplace' },
   { to: '/app/analytics', label: 'Analytics' },
-  
   { to: '/app/tee', label: 'TEE Demo' },
   { to: '/app/nft', label: 'My NFTs' },
 ];
