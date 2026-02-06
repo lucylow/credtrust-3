@@ -9,12 +9,15 @@ import {
   RefreshCw,
   Zap,
   Server,
+  Wallet,
+  ArrowRight,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import AttestationVerifier from './AttestationVerifier';
 import { TEEWorkflowState, TEEAttestation, TEEResult } from '@/types/analytics.types';
 import { useWallet } from '@/hooks/useWallet';
+import WalletConnector from '@/components/app/WalletConnector';
 
 interface TEEWorkflowProps {
   encryptedData: string;
@@ -45,14 +48,16 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
     step: 'idle',
     progress: 0,
   });
+  const [hasStarted, setHasStarted] = useState(false);
 
   const simulateWorkflow = useCallback(async () => {
     if (!wallet.isConnected) {
-      setState({ step: 'error', progress: 0, error: 'Wallet not connected' });
       return;
     }
 
     try {
+      setHasStarted(true);
+      
       // Step 1: Initialize
       setState({ step: 'initializing', progress: 10 });
       await new Promise((r) => setTimeout(r, 1200));
@@ -107,18 +112,21 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
     }
   }, [wallet.isConnected, onComplete, onError]);
 
+  // Auto-start workflow when wallet connects and we have data
   useEffect(() => {
-    if (encryptedData && state.step === 'idle') {
+    if (encryptedData && wallet.isConnected && !hasStarted && state.step === 'idle') {
       simulateWorkflow();
     }
-  }, [encryptedData, state.step, simulateWorkflow]);
+  }, [encryptedData, wallet.isConnected, hasStarted, state.step, simulateWorkflow]);
 
   const retryWorkflow = () => {
     setState({ step: 'idle', progress: 0 });
+    setHasStarted(false);
     setTimeout(simulateWorkflow, 100);
   };
 
   const currentStepIndex = WORKFLOW_STEPS.findIndex((s) => s.id === state.step);
+  const isWaitingForWallet = !wallet.isConnected && !hasStarted;
 
   return (
     <motion.div
@@ -140,14 +148,79 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
         </p>
       </div>
 
-      {/* Progress Bar */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between text-sm mb-2">
-          <span className="text-muted-foreground">Progress</span>
-          <span className="font-medium text-foreground">{state.progress}%</span>
+      {/* Wallet Connection Prompt */}
+      <AnimatePresence mode="wait">
+        {isWaitingForWallet && (
+          <motion.div
+            key="wallet-prompt"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="mb-8"
+          >
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 border border-primary/20">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20">
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Wallet className="h-10 w-10 text-primary" />
+                  </motion.div>
+                </div>
+                
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    Connect Your Wallet to Start
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    A wallet connection is required to sign the TEE execution request and verify your identity on-chain. 
+                    Your private data stays encrypted throughout the process.
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <WalletConnector />
+                  </div>
+                </div>
+
+                <div className="hidden lg:flex items-center gap-2 text-muted-foreground">
+                  <ArrowRight className="h-5 w-5" />
+                  <span className="text-sm">Then workflow begins</span>
+                </div>
+              </div>
+
+              {/* Security badges */}
+              <div className="mt-6 pt-4 border-t border-border/50">
+                <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Lock className="h-3.5 w-3.5 text-success" />
+                    <span>End-to-end encrypted</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Shield className="h-3.5 w-3.5 text-success" />
+                    <span>Intel SGX protected</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-success" />
+                    <span>Verified attestation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Progress Bar - only show when workflow started */}
+      {!isWaitingForWallet && (
+        <div className="mb-8">
+          <div className="flex items-center justify-between text-sm mb-2">
+            <span className="text-muted-foreground">Progress</span>
+            <span className="font-medium text-foreground">{state.progress}%</span>
+          </div>
+          <Progress value={state.progress} className="h-2" />
         </div>
-        <Progress value={state.progress} className="h-2" />
-      </div>
+      )}
 
       {/* Workflow Steps */}
       <div className="relative mb-8">
@@ -157,9 +230,10 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {WORKFLOW_STEPS.map((step, index) => {
             const Icon = step.icon;
-            const isActive = currentStepIndex >= index;
+            const isActive = !isWaitingForWallet && currentStepIndex >= index;
             const isCurrent = state.step === step.id;
             const isError = state.step === 'error';
+            const isDisabled = isWaitingForWallet;
 
             return (
               <motion.div
@@ -171,7 +245,9 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
               >
                 <div
                   className={`flex flex-col items-center text-center p-4 rounded-xl border transition-all ${
-                    isCurrent && !isError
+                    isDisabled
+                      ? 'bg-muted/20 border-border/30 opacity-60'
+                      : isCurrent && !isError
                       ? 'bg-primary/10 border-primary/30'
                       : isActive
                       ? 'bg-card border-border'
@@ -179,18 +255,18 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
                   }`}
                 >
                   <motion.div
-                    animate={isCurrent ? { scale: [1, 1.1, 1] } : {}}
+                    animate={isCurrent && !isDisabled ? { scale: [1, 1.1, 1] } : {}}
                     transition={{ duration: 0.6, repeat: isCurrent ? Infinity : 0 }}
                     className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-gradient-to-br ${
                       isError && isCurrent ? stepColors.error : stepColors[step.id]
-                    } ${isActive ? 'opacity-100' : 'opacity-40'}`}
+                    } ${isActive && !isDisabled ? 'opacity-100' : 'opacity-40'}`}
                   >
                     <Icon className="h-6 w-6 text-primary-foreground" />
                   </motion.div>
 
                   <h4
                     className={`text-sm font-semibold mb-1 ${
-                      isActive ? 'text-foreground' : 'text-muted-foreground'
+                      isActive && !isDisabled ? 'text-foreground' : 'text-muted-foreground'
                     }`}
                   >
                     {step.label}
@@ -199,7 +275,7 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
                     {step.description}
                   </p>
 
-                  {isCurrent && !isError && (
+                  {isCurrent && !isError && !isDisabled && (
                     <motion.div
                       layoutId="activeStep"
                       className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full bg-primary"
@@ -271,8 +347,8 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
         )}
       </AnimatePresence>
 
-      {/* TEE Info */}
-      {state.step !== 'complete' && state.step !== 'error' && (
+      {/* TEE Info - show when workflow is in progress */}
+      {!isWaitingForWallet && state.step !== 'complete' && state.step !== 'error' && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
