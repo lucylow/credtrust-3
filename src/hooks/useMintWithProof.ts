@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useWalletClient, useAccount, usePublicClient } from "wagmi";
 import { keccak256, encodeAbiParameters, parseAbiParameters } from "viem";
-import { arbitrumSepolia } from "wagmi/chains";
+import { arbitrumSepolia } from "viem/chains";
 import ABI from "../contracts/SelectiveABI.json";
 import { SELECTIVE_NFT_ABI, CONTRACT_ADDRESSES } from "../contracts/abis";
 import type { ProofGenerationResult, SolidityProof } from "@/types/tee.types";

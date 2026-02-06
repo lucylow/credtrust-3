@@ -2,7 +2,7 @@ import React from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
-import { arbitrumSepolia } from "wagmi/chains";
+import { arbitrumSepolia } from "viem/chains";
 
 // WalletConnect Project ID - Get your free ID at https://cloud.walletconnect.com
 // This is a publishable key, safe to include in client code

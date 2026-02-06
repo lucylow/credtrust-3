@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSwitchChain } from "wagmi";
-import { arbitrumSepolia } from "wagmi/chains";
+import { arbitrumSepolia } from "viem/chains";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

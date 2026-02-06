@@ -16,6 +16,24 @@ npm run dev
 
 Visit [http://localhost:8080](http://localhost:8080) to view the app.
 
+## 🔥 iExec Hack4Privacy Features
+
+CredTrust-3 is now supercharged with advanced iExec features:
+
+- **Interactive TEE Demo**: Full lifecycle visualization of a privacy-preserving credit score computation. [Live Demo](/iexec-demo)
+- **Bulk Processing**: Score hundreds of users simultaneously using parallel TEE jobs. [Bulk Scoring](/bulk-score)
+- **Web3Mail**: Confidential notifications sent via iExec Web3Mail without exposing user emails.
+- **Account Abstraction**: Gasless TEE requests sponsored by iExec Paymaster.
+- **Oracle Integration**: Securely fetching off-chain data via Chainlink + iExec Oracle.
+
+### 🛠️ iExec Setup
+
+```bash
+# Run the quickstart script
+chmod +x scripts/setup-hackathon.sh
+./scripts/setup-hackathon.sh
+```
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite, Tailwind CSS
@@ -98,6 +116,40 @@ Simply click **Share → Publish** in the Lovable editor.
 npm run build
 # Deploy the dist/ folder to your hosting provider
 ```
+
+## iExec Web3 Messaging integration (CredTrust demo)
+
+This project includes scripts and UI components that demonstrate integration with iExec Web3Mail and Web3Telegram.
+
+### Setup
+
+1. Copy `.env.example` -> `.env` and fill:
+   - `PRIVATE_KEY` (your test wallet)
+   - `IEXEC_APP_ADDRESS` (optional app address)
+   - `IEXEC_IPFS_UPLOAD`, `IEXEC_SMS_URL` (optional)
+   - Set `DEV_MODE=true` to run dry-run mode without contacting iExec services.
+
+2. Install deps:
+   ```bash
+   npm ci
+   ```
+
+Protect a contact and grant access (node):
+```bash
+npx ts-node scripts/web3-messaging/create_protected_data.ts user@example.com
+npx ts-node scripts/web3-messaging/grant_access.ts 0xProtectedAddress --allowBulk true
+```
+
+Send single / campaign messages:
+```bash
+npx ts-node scripts/web3-messaging/send_single_email.ts <protectedData>
+npx ts-node scripts/web3-messaging/prepare_and_send_campaign_email.ts
+```
+
+React UI: the components are in src/components/Web3Messaging. Add them to your routes/pages to get an interactive demo page.
+Notes
+Telegram recipients must start a conversation with @IExecWeb3TelegramBot to obtain a Chat ID (they then pass that Chat ID to you to protect).
+Each sent message requires execution payment (RLC). For local demos use DEV_MODE=true to simulate behavior.
 
 ## 🤝 Contributing
 

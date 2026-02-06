@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AppPage from "./pages/App";
+import IExecDemo from "./pages/IExecDemo";
+import BulkScore from "./pages/BulkScore";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
@@ -14,6 +16,8 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/app/*" element={<AppPage />} />
+        <Route path="/iexec-demo" element={<IExecDemo />} />
+        <Route path="/bulk-score" element={<BulkScore />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

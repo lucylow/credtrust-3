@@ -1,5 +1,5 @@
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
+import { arbitrumSepolia } from 'viem/chains';
 import { WalletState } from '@/types';
 
 export function useWallet() {
