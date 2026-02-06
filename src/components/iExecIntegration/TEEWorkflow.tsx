@@ -11,6 +11,7 @@ import {
   Server,
   Wallet,
   ArrowRight,
+  Play,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -49,14 +50,16 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
     progress: 0,
   });
   const [hasStarted, setHasStarted] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
-  const simulateWorkflow = useCallback(async () => {
-    if (!wallet.isConnected) {
+  const simulateWorkflow = useCallback(async (isDemo = false) => {
+    if (!wallet.isConnected && !isDemo) {
       return;
     }
 
     try {
       setHasStarted(true);
+      if (isDemo) setIsDemoMode(true);
       
       // Step 1: Initialize
       setState({ step: 'initializing', progress: 10 });
@@ -115,14 +118,19 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
   // Auto-start workflow when wallet connects and we have data
   useEffect(() => {
     if (encryptedData && wallet.isConnected && !hasStarted && state.step === 'idle') {
-      simulateWorkflow();
+      simulateWorkflow(false);
     }
   }, [encryptedData, wallet.isConnected, hasStarted, state.step, simulateWorkflow]);
 
   const retryWorkflow = () => {
     setState({ step: 'idle', progress: 0 });
     setHasStarted(false);
-    setTimeout(simulateWorkflow, 100);
+    setIsDemoMode(false);
+    setTimeout(() => simulateWorkflow(isDemoMode), 100);
+  };
+
+  const startDemoMode = () => {
+    simulateWorkflow(true);
   };
 
   const currentStepIndex = WORKFLOW_STEPS.findIndex((s) => s.id === state.step);
@@ -136,9 +144,21 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
     >
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-          <Zap className="h-4 w-4 text-primary" />
-          <span className="text-sm font-medium text-primary">iExec TEE Confidential Compute</span>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+            <Zap className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-primary">iExec TEE Confidential Compute</span>
+          </div>
+          {isDemoMode && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-amber-500/10 border border-amber-500/20"
+            >
+              <Play className="h-3.5 w-3.5 text-amber-500" />
+              <span className="text-xs font-medium text-amber-500">Demo Mode</span>
+            </motion.div>
+          )}
         </div>
         <h2 className="text-2xl font-bold text-foreground mb-2">
           Secure Credit Scoring
@@ -178,8 +198,18 @@ export default function TEEWorkflow({ encryptedData, onComplete, onError }: TEEW
                     Your private data stays encrypted throughout the process.
                   </p>
                   
-                  <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  <div className="flex flex-wrap gap-3 justify-center md:justify-start items-center">
                     <WalletConnector />
+                    <span className="text-muted-foreground text-sm">or</span>
+                    <Button
+                      onClick={startDemoMode}
+                      variant="outline"
+                      size="sm"
+                      className="gap-2 border-amber-500/30 text-amber-600 hover:bg-amber-500/10 hover:text-amber-600"
+                    >
+                      <Play className="h-4 w-4" />
+                      Try Demo Mode
+                    </Button>
                   </div>
                 </div>
 
