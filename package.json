@@ -3,9 +3,19 @@
     "@iexec/dataprotector": "^2.0.0-beta.23",
     "@iexec/web3mail": "^1.7.2",
     "@iexec/web3telegram": "^0.1.0-alpha.9",
-    "iexec": "^8.22.5"
+    "adm-zip": "^0.5.16",
+    "axios": "^1.13.4",
+    "borsh": "^2.0.0",
+    "express": "^5.2.1",
+    "framer-motion": "^12.33.0",
+    "iexec": "^8.22.5",
+    "lucide-react": "^0.563.0",
+    "multer": "^2.0.2"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^25.2.1",
     "jsdom": "^28.0.0"
   }
 }
