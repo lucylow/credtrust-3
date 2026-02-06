@@ -18,12 +18,12 @@ export function TaskGrid({ tasks }: TaskGridProps) {
         >
           <div className="flex justify-between items-start mb-6">
             <div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest ${
-              task.status === 'executing' ? 'bg-emerald-500/20 text-emerald-400' :
-              task.status === 'hitl-pending' ? 'bg-amber-500/20 text-amber-400' :
-              task.status === 'completed' ? 'bg-blue-500/20 text-blue-400' :
+              task.status === 'COMPLETED' ? 'bg-blue-500/20 text-blue-400' :
+              task.status.includes('FAILED') ? 'bg-red-500/20 text-red-400' :
+              ['RECEIVED', 'INITIALIZING', 'INITIALIZED', 'RUNNING'].includes(task.status) ? 'bg-emerald-500/20 text-emerald-400' :
               'bg-white/10 text-white/60'
             }`}>
-              {task.status.replace('-', ' ')}
+              {task.status.replace(/_/g, ' ')}
             </div>
             <span className="text-white/30 font-mono text-xs">#{task.id.slice(-6)}</span>
           </div>
@@ -54,7 +54,7 @@ export function TaskGrid({ tasks }: TaskGridProps) {
             <div className="flex items-center justify-between text-xs mb-3">
               <span className="text-white/40">Step Progress</span>
               <span className="text-white font-bold">
-                {task.timeline.filter(s => s.status === 'completed').length} / {task.timeline.length}
+                {task.timeline.filter(s => ['COMPLETED', 'COMPUTED', 'CONTRIBUTED', 'REVEALED', 'RESULT_UPLOADED', 'CONTRIBUTE_AND_FINALIZE_DONE'].includes(s.status)).length} / {task.timeline.length}
               </span>
             </div>
             <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden flex gap-0.5">
@@ -62,10 +62,10 @@ export function TaskGrid({ tasks }: TaskGridProps) {
                 <div 
                   key={idx}
                   className={`h-full flex-1 transition-all duration-500 ${
-                    step.status === 'completed' ? 'bg-emerald-500' :
-                    step.status === 'running' ? 'bg-blue-500 animate-pulse' :
-                    step.status === 'failed' ? 'bg-red-500' : 
-                    step.status === 'waiting-hitl' ? 'bg-amber-500' : 'bg-white/10'
+                    ['COMPLETED', 'COMPUTED', 'CONTRIBUTED', 'REVEALED', 'RESULT_UPLOADED', 'CONTRIBUTE_AND_FINALIZE_DONE'].includes(step.status) ? 'bg-emerald-500' :
+                    ['COMPUTING', 'CONTRIBUTING', 'REVEALING', 'RESULT_UPLOADING', 'STARTING', 'APP_DOWNLOADING', 'DATA_DOWNLOADING'].includes(step.status) ? 'bg-blue-500 animate-pulse' :
+                    step.status.includes('FAILED') ? 'bg-red-500' : 
+                    ['ABORTED', 'WORKER_LOST'].includes(step.status) ? 'bg-amber-500' : 'bg-white/10'
                   }`}
                 />
               ))}

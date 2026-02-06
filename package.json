@@ -28,9 +28,13 @@
     "elizaos:dev": "elizaos dev --characters src/agents/credtrust-agent.character.json",
     "tdx:build": "docker build -f tdx/Dockerfile.tdx -t credtrust-elizaos-tdx .",
     "tdx:deploy": "npm run tdx:build && iexec app deploy",
-    "hackathon:demo": "concurrently \"npm run dev\" \"npm run tdx:deploy\""
+    "hackathon:demo": "concurrently \"npm run dev\" \"npm run tdx:deploy\"",
+    "start:server": "ts-node src/server/index.ts",
+    "iapp:create:run": "ts-node scripts/iapp/create_and_run_requestorder.ts",
+    "iapp:monitor": "ts-node scripts/iapp/monitor_task.ts"
   },
   "dependencies": {
+    "@iexec/dataprotector-deserializer": "latest",
     "discord.js": "^14.14.1",
     "elizaos": "latest",
     "@iexec/sdk": "^3.0.0",
@@ -114,13 +118,19 @@
     "vitest": "^4.0.18",
     "wagmi": "^2.19.5",
     "zod": "^3.25.76",
-    "zustand": "^4.5.7"
+    "zustand": "^4.5.7",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "axios": "^1.6.2",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.1.1",
     "@openzeppelin/contracts": "^4.9.3",
     "hardhat": "^2.14.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0"
   }
 }

@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMultiAgentMockData, Task } from '@/lib/multiAgentMockData';
 import { AgentGrid, TaskTimeline, OrchestrationStats, ControlPanel, TaskGrid } from '@/components/orchestration';
+import { PoCoFlow } from '@/components/PoCoFlow';
+import { PoCoDebug } from '@/components/PoCoDebug';
 
 export default function MultiAgentDashboard() {
   const { agents, tasks, stats } = useMultiAgentMockData();
   const [activeTab, setActiveTab] = useState<'overview' | 'tasks' | 'agents'>('overview');
+  const [debugTask, setDebugTask] = useState<Task | null>(null);
 
-  const activeTasks = tasks.filter(t => t.status !== 'completed');
+  const activeTasks = tasks.filter(t => t.status !== 'COMPLETED');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-emerald-900/20 overflow-hidden text-white">
@@ -70,7 +73,10 @@ export default function MultiAgentDashboard() {
             >
               <AgentGrid agents={agents.slice(0, 6)} />
               <div className="space-y-8">
-                <TaskTimeline tasks={activeTasks.slice(0, 3)} />
+                <PoCoFlow taskStatus={activeTasks[0]?.status} />
+                <div onClick={() => activeTasks[0] && setDebugTask(activeTasks[0])} className="cursor-pointer">
+                  <TaskTimeline tasks={activeTasks.slice(0, 3)} />
+                </div>
                 <ControlPanel />
               </div>
             </motion.section>
@@ -98,6 +104,12 @@ export default function MultiAgentDashboard() {
             >
               <AgentGrid agents={agents} />
             </motion.section>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {debugTask && (
+            <PoCoDebug task={debugTask} onClose={() => setDebugTask(null)} />
           )}
         </AnimatePresence>
       </div>

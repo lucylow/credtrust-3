@@ -1,0 +1,27 @@
+# docker/Dockerfile.tdx
+FROM ghcr.io/iexecproject/tdx-base:latest
+
+# Install ML dependencies (TDX supports all frameworks)
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Credit scoring ML stack (works in TDX!)
+RUN pip3 install --no-cache-dir \
+    tensorflow==2.19.0 \
+    scikit-learn==1.6.1 \
+    pandas \
+    numpy \
+    fastapi \
+    uvicorn
+
+WORKDIR /app
+COPY src/ ./src/
+COPY entrypoint-tdx.sh /entrypoint-tdx.sh
+
+ENV PYTHONPATH=/app \
+    TF_CPP_MIN_LOG_LEVEL=2
+
+RUN chmod +x /entrypoint-tdx.sh
+ENTRYPOINT ["/entrypoint-tdx.sh"]

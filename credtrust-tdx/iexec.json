@@ -1,0 +1,20 @@
+{
+  "app": {
+    "owner": "0xYourWallet",
+    "name": "credtrust-tdx-credit-agent",
+    "type": "DOCKER",
+    "multiaddr": "yourdocker/credtrust-tdx:latest",
+    "checksum": "0x...",
+    "mrenclave": {
+      "framework": "TDX"
+    }
+  },
+  "developer": {
+    "name": "CredTrust",
+    "email": "team@credtrust.ai"
+  },
+  "iexec": {
+    "user": "credtrust",
+    "project": "hack4privacy"
+  }
+}

@@ -12,12 +12,19 @@ contract EncryptedReceiptRegistry {
         uint256 registeredAt;
         uint256 attestedAt;
         address uploader;
+        // PoCo extensions
+        bytes32 dealId;
+        bytes32 taskId;
+        uint256 appPaid;
+        uint256 datasetPaid;
+        uint256 workerPaid;
     }
 
     mapping(bytes32 => Receipt) public receipts;
 
     event ReceiptRegistered(bytes32 indexed receiptId, string ipfsCID, bytes32 merkleRoot, address indexed uploader, uint256 ts);
     event ReceiptAttested(bytes32 indexed receiptId, bytes32 attestationHash, address indexed attestor, uint256 ts);
+    event PoCoEconomicsUpdated(bytes32 indexed receiptId, bytes32 dealId, bytes32 taskId, uint256 appPaid, uint256 datasetPaid, uint256 workerPaid);
 
     // compute deterministic receipt id used by clients
     function computeReceiptId(string calldata ipfsCID, address uploader) public pure returns (bytes32) {
@@ -36,7 +43,12 @@ contract EncryptedReceiptRegistry {
             attestationHash: bytes32(0),
             registeredAt: block.timestamp,
             attestedAt: 0,
-            uploader: msg.sender
+            uploader: msg.sender,
+            dealId: bytes32(0),
+            taskId: bytes32(0),
+            appPaid: 0,
+            datasetPaid: 0,
+            workerPaid: 0
         });
         emit ReceiptRegistered(receiptId, ipfsCID, merkleRoot, msg.sender, block.timestamp);
     }
@@ -49,6 +61,24 @@ contract EncryptedReceiptRegistry {
         r.attestationHash = attestationHash;
         r.attestedAt = block.timestamp;
         emit ReceiptAttested(receiptId, attestationHash, msg.sender, block.timestamp);
+    }
+
+    function updatePoCoEconomics(
+        bytes32 receiptId,
+        bytes32 dealId,
+        bytes32 taskId,
+        uint256 appPaid,
+        uint256 datasetPaid,
+        uint256 workerPaid
+    ) external {
+        require(receipts[receiptId].id != bytes32(0), "not registered");
+        Receipt storage r = receipts[receiptId];
+        r.dealId = dealId;
+        r.taskId = taskId;
+        r.appPaid = appPaid;
+        r.datasetPaid = datasetPaid;
+        r.workerPaid = workerPaid;
+        emit PoCoEconomicsUpdated(receiptId, dealId, taskId, appPaid, datasetPaid, workerPaid);
     }
 
     // helper: convert address to ascii hex string

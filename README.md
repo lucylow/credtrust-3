@@ -14,6 +14,15 @@ CredTrust-3 has been transformed from a static dashboard into an **Autonomous Ag
 - ✅ **Autonomous Credit Management**: 24/7 portfolio monitoring and loan execution.
 - ✅ **Multi-platform Support**: Integrated with Discord, Telegram, and X.
 - ✅ **Claude MCP Ready**: Use Claude to manage your TDX agents.
+- ✅ **PoCo-Native Trust**: Deep integration with iExec Proof-of-Contribution for verifiable hardware proofs and economic guarantees.
+
+### 🧠 iExec PoCo Integration (Proof-of-Contribution)
+CredTrust deeply integrates with the iExec PoCo protocol to provide hardware-enforced trust:
+- **TEE Enforced**: All scoring logic is executed within Intel SGX/TDX enclaves.
+- **Economic Finality**: Payments and penalties are handled natively by PoCo.
+- **Verifiable Proofs**: Hardware-signed attestations are verified on-chain.
+
+"We do not invent trust — we inherit it from PoCo."
 
 ### 🏗️ Agentic Architecture
 ```mermaid

@@ -13,11 +13,29 @@ export interface Agent {
   framework?: string;
 }
 
+export type PoCoTaskStatus = 
+  | 'RECEIVED' | 'INITIALIZING' | 'INITIALIZED' | 'RUNNING' | 'CONSENSUS_REACHED' 
+  | 'AT_LEAST_ONE_REVEALED' | 'RESULT_UPLOADING' | 'RESULT_UPLOADED' | 'FINALIZING' 
+  | 'FINALIZED' | 'COMPLETED' | 'INITIALIZE_FAILED' | 'RUNNING_FAILED' 
+  | 'CONTRIBUTION_TIMEOUT' | 'RESULT_UPLOAD_TIMEOUT' | 'FINALIZE_FAILED' 
+  | 'FINAL_DEADLINE_REACHED' | 'FAILED';
+
+export type PoCoReplicateStatus =
+  | 'CREATED' | 'STARTING' | 'STARTED' | 'START_FAILED' | 'APP_DOWNLOADING' 
+  | 'APP_DOWNLOADED' | 'APP_DOWNLOAD_FAILED' | 'DATA_DOWNLOADING' | 'DATA_DOWNLOADED' 
+  | 'DATA_DOWNLOAD_FAILED' | 'COMPUTING' | 'COMPUTED' | 'COMPUTE_FAILED' 
+  | 'CONTRIBUTING' | 'CONTRIBUTE_FAILED' | 'CONTRIBUTED' | 'REVEALING' 
+  | 'REVEALED' | 'REVEAL_FAILED' | 'RESULT_UPLOAD_REQUESTED' | 'RESULT_UPLOADING' 
+  | 'RESULT_UPLOAD_FAILED' | 'RESULT_UPLOADED' | 'CONTRIBUTE_AND_FINALIZE_ONGOING' 
+  | 'CONTRIBUTE_AND_FINALIZE_DONE' | 'CONTRIBUTE_AND_FINALIZE_FAILED' | 'COMPLETING' 
+  | 'COMPLETED' | 'COMPLETE_FAILED' | 'FAILED' | 'ABORTED' | 'RECOVERING' | 'WORKER_LOST';
+
 export interface Task {
   id: string;
   sessionId: string;
   goal: string;
-  status: 'queued' | 'routing' | 'executing' | 'hitl-pending' | 'completed' | 'failed';
+  status: PoCoTaskStatus;
+  failureCause?: string;
   route: {
     primaryAgent: string;
     backupAgent: string;
@@ -34,10 +52,11 @@ export interface Task {
 export interface TaskStep {
   agentId: string;
   step: string;
-  status: 'pending' | 'running' | 'completed' | 'failed' | 'waiting-hitl';
+  status: PoCoReplicateStatus;
   timestamp: number;
   result?: any;
   duration?: number;
+  failureCause?: string;
 }
 
 export const MOCK_AGENTS: Agent[] = [
@@ -101,17 +120,17 @@ export const MOCK_TASKS: Task[] = [
     id: 'task-001',
     sessionId: 'user-alice-001',
     goal: 'Score wallet 0x1234... and find optimal loan under 4.5% APR with LTV < 70%',
-    status: 'executing',
+    status: 'RUNNING',
     route: {
       primaryAgent: 'orchestrator-1',
       backupAgent: 'credit-1',
       confidence: 0.98
     },
     timeline: [
-      { agentId: 'orchestrator-1', step: 'Task decomposition', status: 'completed', timestamp: Date.now() - 120000, duration: 2.3 },
-      { agentId: 'credit-1', step: 'Wallet scoring', status: 'running', timestamp: Date.now() - 85000, duration: undefined },
-      { agentId: 'lending-1', step: 'Loan discovery', status: 'pending', timestamp: Date.now() - 30000 },
-      { agentId: 'risk-1', step: 'Risk assessment', status: 'pending', timestamp: Date.now() },
+      { agentId: 'orchestrator-1', step: 'Task decomposition', status: 'COMPLETED', timestamp: Date.now() - 120000, duration: 2.3 },
+      { agentId: 'credit-1', step: 'Wallet scoring', status: 'COMPUTING', timestamp: Date.now() - 85000, duration: undefined },
+      { agentId: 'lending-1', step: 'Loan discovery', status: 'STARTING', timestamp: Date.now() - 30000 },
+      { agentId: 'risk-1', step: 'Risk assessment', status: 'CREATED', timestamp: Date.now() },
     ],
     metrics: {
       estimatedCost: 0.045,
@@ -123,15 +142,16 @@ export const MOCK_TASKS: Task[] = [
     id: 'task-002',
     sessionId: 'user-bob-002',
     goal: 'Monitor portfolio LTV continuously and auto-liquidate if > 85%',
-    status: 'hitl-pending',
+    status: 'RUNNING_FAILED',
+    failureCause: 'TEE_SESSION_GENERATION_INVALID_AUTHORIZATION',
     route: {
       primaryAgent: 'risk-1',
       backupAgent: 'execution-1', 
       confidence: 0.96
     },
     timeline: [
-      { agentId: 'risk-1', step: 'LTV calculation', status: 'completed', timestamp: Date.now() - 180000, duration: 4.1 },
-      { agentId: 'execution-1', step: 'Liquidation proposal', status: 'waiting-hitl', timestamp: Date.now() - 45000, duration: undefined }
+      { agentId: 'risk-1', step: 'LTV calculation', status: 'COMPUTED', timestamp: Date.now() - 180000, duration: 4.1 },
+      { agentId: 'execution-1', step: 'Liquidation proposal', status: 'COMPUTE_FAILED', timestamp: Date.now() - 45000, duration: undefined, failureCause: 'TEE_SESSION_GENERATION_INVALID_AUTHORIZATION' }
     ],
     metrics: {
       estimatedCost: 0.023,
@@ -143,15 +163,15 @@ export const MOCK_TASKS: Task[] = [
     id: 'task-003',
     sessionId: 'user-charlie-003',
     goal: 'Execute $15k loan at best available rate',
-    status: 'completed',
+    status: 'COMPLETED',
     route: {
       primaryAgent: 'lending-1',
       backupAgent: 'execution-1',
       confidence: 0.92
     },
     timeline: [
-      { agentId: 'lending-1', step: 'APR optimization', status: 'completed', timestamp: Date.now() - 300000, duration: 3.8 },
-      { agentId: 'execution-1', step: 'Transaction broadcast', status: 'completed', timestamp: Date.now() - 270000, duration: 1.2, result: { txHash: '0xabc123...' } }
+      { agentId: 'lending-1', step: 'APR optimization', status: 'COMPLETED', timestamp: Date.now() - 300000, duration: 3.8 },
+      { agentId: 'execution-1', step: 'Transaction broadcast', status: 'COMPLETED', timestamp: Date.now() - 270000, duration: 1.2, result: { txHash: '0xabc123...' } }
     ],
     metrics: {
       estimatedCost: 0.012,
@@ -197,8 +217,11 @@ export function useMultiAgentMockData() {
       setTasks(prev => prev.map(task => ({
         ...task,
         timeline: task.timeline.map(step => {
-          if (step.status === 'running' && Math.random() > 0.8) {
-            return { ...step, status: 'completed' as const, duration: Math.random() * 5 + 1 };
+          if (step.status === 'COMPUTING' && Math.random() > 0.8) {
+            return { ...step, status: 'COMPUTED' as const, duration: Math.random() * 5 + 1 };
+          }
+          if (step.status === 'STARTING' && Math.random() > 0.8) {
+            return { ...step, status: 'COMPUTING' as const, timestamp: Date.now() };
           }
           return step;
         })

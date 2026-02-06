@@ -1,513 +1,335 @@
 
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:35 PM                agents
-d-----        2026-02-06   2:34 PM                app
-d-----        2026-02-06   3:19 PM                components
-d-----        2026-02-06  11:40 AM                contracts
-d-----        2026-02-06   2:36 PM                dashboard
-d-----        2026-02-06   2:32 PM                discord
-d-----        2026-02-06   2:32 PM                hitl
-d-----        2026-02-06   1:38 PM                hooks
-d-----        2026-02-06  11:40 AM                integrations
-d-----        2026-02-06   3:18 PM                lib
-d-----        2026-02-06   2:35 PM                memory
-d-----        2026-02-06  11:40 AM                mocks
-d-----        2026-02-06   2:34 PM                orchestrator
-d-----        2026-02-06   3:18 PM                pages
-d-----        2026-02-06   2:35 PM                router
-d-----        2026-02-06   2:18 PM                services
-d-----        2026-02-06   2:34 PM                state
-d-----        2026-02-06  11:40 AM                store
-d-----        2026-02-06  11:40 AM                test
-d-----        2026-02-06  11:40 AM                types
-d-----        2026-02-06  11:40 AM                utils
-d-----        2026-02-06   1:38 PM                wallet
-d-----        2026-02-06   2:36 PM                websocket
--a----        2026-02-06  11:40 AM            648 App.css
--a----        2026-02-06   3:05 PM           1337 App.tsx
--a----        2026-02-06   2:35 PM           1394 elizaos-orchestrator.ts
--a----        2026-02-06  11:40 AM          12912 index.css
--a----        2026-02-06   3:06 PM            532 main.tsx
--a----        2026-02-06  11:40 AM             39 vite-env.d.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:03 PM                memory
-d-----        2026-02-06   2:34 PM                tdx
--a----        2026-02-06   2:34 PM            992 AgentRegistry.ts
--a----        2026-02-06   2:35 PM           3247 credit-agent-hitl.ts
--a----        2026-02-06   2:04 PM           2460 credit-agent.ts
--a----        2026-02-06   2:33 PM            926 credtrust-agent.character.jso
-                                                  n
--a----        2026-02-06   2:34 PM           2667 eliza-credit-agent.ts
--a----        2026-02-06   2:04 PM            131 index.ts
--a----        2026-02-06   2:04 PM           2229 lending-agent.ts
--a----        2026-02-06   2:04 PM           2495 orchestrator.ts
--a----        2026-02-06   2:04 PM           1106 risk-agent.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\tdx
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:34 PM            801 TDXCreditAgent.ts
--a----        2026-02-06   2:34 PM            494 TDXLendingAgent.ts
--a----        2026-02-06   2:34 PM            457 TDXRiskAgent.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:35 PM                api
-d-----        2026-02-06   2:35 PM                dashboard
-d-----        2026-02-06   2:34 PM                elizaos
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:35 PM                eliza-orchestrator
-d-----        2026-02-06   2:34 PM                orchestrator
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api\orchestrator
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:34 PM            817 route.ts
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\dashboard
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:35 PM           3507 page.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\elizaos
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:34 PM           2428 page.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:35 PM                agent-dashboard
-d-----        2026-02-06   2:35 PM                agent-stats
-d-----        2026-02-06   2:03 PM                agent-ui
-d-----        2026-02-06   2:05 PM                ai-chat
-d-----        2026-02-06  11:40 AM                analytics
-d-----        2026-02-06   2:29 PM                app
-d-----        2026-02-06  11:40 AM                atoms
-d-----        2026-02-06  11:40 AM                credtrust
-d-----        2026-02-06   2:32 PM                dashboard
-d-----        2026-02-06  11:40 AM                debt-marketplace
-d-----        2026-02-06  11:40 AM                demo
-d-----        2026-02-06   2:35 PM                eliza-chat
-d-----        2026-02-06  11:40 AM                feedback
-d-----        2026-02-06   1:33 PM                iexec-demo
-d-----        2026-02-06   2:29 PM                iExecIntegration
-d-----        2026-02-06   3:06 PM                landing
-d-----        2026-02-06   3:06 PM                layout
-d-----        2026-02-06  11:40 AM                marketplace
-d-----        2026-02-06  11:40 AM                ops-center
-d-----        2026-02-06   3:19 PM                orchestration
-d-----        2026-02-06  11:40 AM                organisms
-d-----        2026-02-06   2:29 PM                privacy
-d-----        2026-02-06  11:40 AM                slides
-d-----        2026-02-06   2:29 PM                tee-monitor
-d-----        2026-02-06  11:40 AM                ui
-d-----        2026-02-06   1:43 PM                Web3Messaging
-d-----        2026-02-06   2:03 PM                workflows
--a----        2026-02-06  11:40 AM           3586 BackendStatus.tsx
--a----        2026-02-06   2:18 PM           2240 EnclaveTrace.tsx
--a----        2026-02-06   3:19 PM           2836 IAppRunner.tsx
--a----        2026-02-06  11:40 AM            779 NavLink.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \agent-dashboard
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:35 PM           3062 EnclaveMonitor.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \agent-stats
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:35 PM           1231 Stats.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ai-chat
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:05 PM          11587 AIChat.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           9591 CreditDashboard.tsx
--a----        2026-02-06  11:40 AM           2471 CreditFactors.tsx
--a----        2026-02-06  11:40 AM           4168 CreditHistory.tsx
--a----        2026-02-06  11:40 AM            327 index.ts
--a----        2026-02-06  11:40 AM           4142 PortfolioAnalytics.tsx
--a----        2026-02-06  11:40 AM           3904 RiskVisualization.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:06 PM           6603 AppHeader.tsx
--a----        2026-02-06   2:29 PM           6444 CreditNFT.tsx
--a----        2026-02-06   2:05 PM           9320 Dashboard.tsx
--a----        2026-02-06  11:43 AM          12777 DataSubmission.tsx
--a----        2026-02-06  11:44 AM           7004 TEEVisualizer.tsx
--a----        2026-02-06   1:38 PM           1487 WalletConnector.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           1897 Badge.tsx
--a----        2026-02-06  11:40 AM            162 index.ts
--a----        2026-02-06  11:40 AM           1944 PriceTag.tsx
--a----        2026-02-06  11:40 AM           1909 ProgressDual.tsx
--a----        2026-02-06  11:40 AM           2449 StatCard.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           7182 DataProtectorCard.tsx
--a----        2026-02-06  11:40 AM            387 index.ts
--a----        2026-02-06  11:40 AM           8255 LoanNFTCard.tsx
--a----        2026-02-06  11:40 AM           7260 ProofGeneratorCard.tsx
--a----        2026-02-06  11:40 AM           2384 RiskEngineDashboard.tsx
--a----        2026-02-06  11:40 AM           4816 RiskScoreHero.tsx
--a----        2026-02-06  11:40 AM           8164 TEEExecutionCard.tsx
--a----        2026-02-06  11:40 AM           3959 WorkflowSteps.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:32 PM           5088 AgentCard.tsx
--a----        2026-02-06   2:32 PM           1134 Controls.tsx
--a----        2026-02-06   2:32 PM           1971 FrameworkStatus.tsx
--a----        2026-02-06   2:32 PM            128 index.ts
--a----        2026-02-06   2:32 PM           2969 LiveTaskCard.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \debt-marketplace
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           2046 DebtHero.tsx
--a----        2026-02-06  11:40 AM            306 index.ts
--a----        2026-02-06  11:40 AM           9962 OrderBookDepth.tsx
--a----        2026-02-06  11:40 AM           6378 PositionCard.tsx
--a----        2026-02-06  11:40 AM           8211 PriceHistoryChart.tsx
--a----        2026-02-06  11:40 AM           3937 TrancheManager.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\demo
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           5980 DemoDatasetPicker.tsx
--a----        2026-02-06  11:40 AM             68 index.ts
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\eliza-chat
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:35 PM           3393 Chat.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\feedback
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           3774 ConfettiCelebration.tsx
--a----        2026-02-06  11:40 AM           4594 EmptyState.tsx
--a----        2026-02-06  11:40 AM           6308 SuccessAnimation.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iexec-demo
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   1:33 PM           1926 Stepper.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \iExecIntegration
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:29 PM           4707 AttestationVerifier.tsx
--a----        2026-02-06  11:40 AM            130 index.ts
--a----        2026-02-06   2:29 PM          16969 TEEWorkflow.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM          10545 AnalyticsPreview.tsx
--a----        2026-02-06  11:40 AM           3383 CountdownTimer.tsx
--a----        2026-02-06  11:40 AM          19256 CreditFlowDemo.tsx
--a----        2026-02-06  11:40 AM          11606 FeaturesSection.tsx
--a----        2026-02-06  11:40 AM           5333 FinalCTA.tsx
--a----        2026-02-06  11:40 AM           1462 FloatingParticles.tsx
--a----        2026-02-06  11:40 AM           6920 Footer.tsx
--a----        2026-02-06  11:40 AM           6943 HackathonSection.tsx
--a----        2026-02-06   3:06 PM           6658 Header.tsx
--a----        2026-02-06   2:06 PM          10154 HeroSection.tsx
--a----        2026-02-06  11:40 AM          11678 IExecExplainer.tsx
--a----        2026-02-06  11:40 AM           3289 ProblemSection.tsx
--a----        2026-02-06  11:40 AM           7486 SolutionSection.tsx
--a----        2026-02-06  11:40 AM           2717 TechStackSection.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\layout
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           4409 MobileNav.tsx
--a----        2026-02-06  11:40 AM           2969 PageTransition.tsx
--a----        2026-02-06   3:06 PM           5257 Sidebar.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \marketplace
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM            238 index.ts
--a----        2026-02-06  11:40 AM           8198 LoanApplication.tsx
--a----        2026-02-06  11:40 AM           5827 LoanCard.tsx
--a----        2026-02-06  11:40 AM           5859 LoanFilters.tsx
--a----        2026-02-06  11:40 AM          11255 LoanMarketplace.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ops-center
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           2853 AlertCenter.tsx
--a----        2026-02-06  11:40 AM           3540 HSMMonitor.tsx
--a----        2026-02-06  11:40 AM            112 index.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \orchestration
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   3:04 PM           3766 AgentGrid.tsx
--a----        2026-02-06   3:19 PM           2594 ControlPanel.tsx
--a----        2026-02-06   3:04 PM            164 index.ts
--a----        2026-02-06   3:19 PM           3070 OrchestrationStats.tsx
--a----        2026-02-06   3:04 PM           3706 TaskGrid.tsx
--a----        2026-02-06   3:19 PM           2938 TaskTimeline.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\organisms
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM             46 index.ts
--a----        2026-02-06  11:40 AM           6585 TrancheCard.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:29 PM           6011 AttestationViewer.tsx
--a----        2026-02-06  11:40 AM           5354 DataControls.tsx
--a----        2026-02-06  11:40 AM           9993 DisclosureTokens.tsx
--a----        2026-02-06  11:40 AM            323 index.ts
--a----        2026-02-06  11:40 AM           3870 PrivacyMetrics.tsx
--a----        2026-02-06  11:40 AM           3447 PrivacyOverview.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\slides
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM             46 index.ts
--a----        2026-02-06  11:40 AM           6635 SlideViewer.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \tee-monitor
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:29 PM           3428 Monitor.tsx
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           2028 accordion.tsx
--a----        2026-02-06  11:40 AM           4417 alert-dialog.tsx
--a----        2026-02-06  11:40 AM           1589 alert.tsx
--a----        2026-02-06  11:40 AM           4582 AnimatedCard.tsx
--a----        2026-02-06  11:40 AM           5051 AnimatedCounter.tsx
--a----        2026-02-06  11:40 AM            148 aspect-ratio.tsx
--a----        2026-02-06  11:40 AM           1403 avatar.tsx
--a----        2026-02-06  11:40 AM           1174 badge.tsx
--a----        2026-02-06  11:40 AM           2777 breadcrumb.tsx
--a----        2026-02-06  11:40 AM           2866 button.tsx
--a----        2026-02-06  11:40 AM           2617 calendar.tsx
--a----        2026-02-06  11:40 AM           1828 card.tsx
--a----        2026-02-06  11:40 AM           6473 carousel.tsx
--a----        2026-02-06  11:40 AM          10290 chart.tsx
--a----        2026-02-06  11:40 AM           1079 checkbox.tsx
--a----        2026-02-06  11:40 AM            329 collapsible.tsx
--a----        2026-02-06  11:40 AM           4953 command.tsx
--a----        2026-02-06  11:40 AM           7369 context-menu.tsx
--a----        2026-02-06  11:40 AM           3856 dialog.tsx
--a----        2026-02-06  11:40 AM           3028 drawer.tsx
--a----        2026-02-06  11:40 AM           7439 dropdown-menu.tsx
--a----        2026-02-06  11:40 AM           4143 form.tsx
--a----        2026-02-06  11:40 AM           2983 GradientButton.tsx
--a----        2026-02-06  11:40 AM           1220 hover-card.tsx
--a----        2026-02-06  11:40 AM           2227 input-otp.tsx
--a----        2026-02-06  11:40 AM            821 input.tsx
--a----        2026-02-06  11:40 AM           4529 InteractiveTooltip.tsx
--a----        2026-02-06  11:40 AM            713 label.tsx
--a----        2026-02-06  11:40 AM           3421 LoadingSkeleton.tsx
--a----        2026-02-06  11:40 AM           8070 menubar.tsx
--a----        2026-02-06  11:40 AM           4277 Modal.tsx
--a----        2026-02-06  11:40 AM           5150 navigation-menu.tsx
--a----        2026-02-06  11:40 AM           2764 pagination.tsx
--a----        2026-02-06  11:40 AM           1268 popover.tsx
--a----        2026-02-06  11:40 AM            788 progress.tsx
--a----        2026-02-06  11:40 AM           5459 ProgressStepper.tsx
--a----        2026-02-06  11:40 AM           1483 radio-group.tsx
--a----        2026-02-06  11:40 AM           1766 resizable.tsx
--a----        2026-02-06  11:40 AM           1646 scroll-area.tsx
--a----        2026-02-06  11:40 AM           5718 select.tsx
--a----        2026-02-06  11:40 AM            718 separator.tsx
--a----        2026-02-06  11:40 AM           4344 sheet.tsx
--a----        2026-02-06  11:40 AM          23518 sidebar.tsx
--a----        2026-02-06  11:40 AM            274 skeleton.tsx
--a----        2026-02-06  11:40 AM           1088 slider.tsx
--a----        2026-02-06  11:40 AM            937 sonner.tsx
--a----        2026-02-06  11:40 AM           4170 StatCard.tsx
--a----        2026-02-06  11:40 AM           1174 switch.tsx
--a----        2026-02-06  11:40 AM           2766 table.tsx
--a----        2026-02-06  11:40 AM           1950 tabs.tsx
--a----        2026-02-06  11:40 AM            772 textarea.tsx
--a----        2026-02-06  11:40 AM           7429 ThemeToggle.tsx
--a----        2026-02-06  11:40 AM           4909 toast.tsx
--a----        2026-02-06  11:40 AM            754 toaster.tsx
--a----        2026-02-06  11:40 AM           1763 toggle-group.tsx
--a----        2026-02-06  11:40 AM           1453 toggle.tsx
--a----        2026-02-06  11:40 AM           1183 tooltip.tsx
--a----        2026-02-06  11:40 AM             85 use-toast.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
-    \Web3Messaging
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   1:43 PM           1901 GrantAccessForm.tsx
--a----        2026-02-06   1:39 PM           3372 ProtectAndGrant.tsx
--a----        2026-02-06   1:43 PM           1392 ProtectedDataForm.tsx
--a----        2026-02-06   1:43 PM           3182 SendCampaign.tsx
--a----        2026-02-06   1:43 PM           2302 SendSingleMessage.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\contracts
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           7108 abis.ts
--a----        2026-02-06  11:40 AM            932 SelectiveABI.json
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\dashboard
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:36 PM           2708 DiscordHITLDashboard.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM            595 use-mobile.tsx
--a----        2026-02-06  11:40 AM           4121 use-toast.ts
--a----        2026-02-06  11:40 AM            202 useAlertCenter.ts
--a----        2026-02-06  11:40 AM           5383 useApi.ts
--a----        2026-02-06  11:40 AM            366 useHSMStatus.ts
--a----        2026-02-06  11:40 AM           1851 useIntersectionObserver.ts
--a----        2026-02-06  11:40 AM            932 useMediaQuery.ts
--a----        2026-02-06   1:38 PM           4650 useMintWithProof.ts
--a----        2026-02-06  11:40 AM            829 usePrefetch.ts
--a----        2026-02-06  11:40 AM           7049 usePrivacy.ts
--a----        2026-02-06  11:44 AM           8969 useTEE.ts
--a----        2026-02-06  11:40 AM           2402 useTheme.ts
--a----        2026-02-06  11:40 AM            984 useTrancheManager.ts
--a----        2026-02-06  11:40 AM           1770 useTranchePrices.ts
--a----        2026-02-06   1:38 PM           1049 useWallet.ts
--a----        2026-02-06  11:40 AM           6821 useWebSocket.ts
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06  11:40 AM                supabase
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations\supabase
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM            606 client.ts
--a----        2026-02-06  11:40 AM           9335 types.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   1:34 PM            642 aa-client.ts
--a----        2026-02-06  11:40 AM           3889 api.ts
--a----        2026-02-06  11:40 AM           1547 config.ts
--a----        2026-02-06   1:42 PM           2016 dataProtector.ts
--a----        2026-02-06   3:18 PM           3623 dataProtectorProcess.ts
--a----        2026-02-06  11:40 AM           1689 demo-data.ts
--a----        2026-02-06   2:35 PM            896 elizaos-client.ts
--a----        2026-02-06   3:06 PM           3521 iexec-client.ts
--a----        2026-02-06   2:02 PM           2722 iexecMessaging.ts
--a----        2026-02-06   2:03 PM           2705 iexecTelegram.ts
--a----        2026-02-06  11:40 AM            233 index.ts
--a----        2026-02-06   2:32 PM           3546 mockData.ts
--a----        2026-02-06   2:23 PM           3465 monetization.ts
--a----        2026-02-06   2:35 PM            655 multi-client.ts
--a----        2026-02-06   3:04 PM           6654 multiAgentMockData.ts
--a----        2026-02-06   1:35 PM            800 oracle.ts
--a----        2026-02-06  11:40 AM            175 utils.ts
--a----        2026-02-06   1:34 PM           1294 web3mail.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           6497 analyticsData.ts
--a----        2026-02-06  11:40 AM            783 api.ts
--a----        2026-02-06  11:40 AM           7162 borrowerGenerator.ts
--a----        2026-02-06  11:40 AM           4727 demoBorrowers.ts
--a----        2026-02-06  11:40 AM          12380 iexecData.ts
--a----        2026-02-06  11:40 AM            674 index.ts
--a----        2026-02-06  11:40 AM           5351 loanData.ts
--a----        2026-02-06  11:40 AM          10892 mockData.ts
--a----        2026-02-06  11:40 AM           9838 portfolioData.ts
--a----        2026-02-06  11:40 AM           3259 productionDatasets.ts
--a----        2026-02-06  11:40 AM           5457 teeData.ts
-    Directory:
-    C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\orchestrator
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:34 PM           4704 index.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2026-02-06   2:03 PM                api
-d-----        2026-02-06  11:40 AM                app
--a----        2026-02-06   2:33 PM           4890 AgentsDashboard.tsx
--a----        2026-02-06  11:40 AM           9261 App.tsx
--a----        2026-02-06   1:34 PM           5653 BulkScore.tsx
--a----        2026-02-06   2:05 PM           2335 Chat.tsx
--a----        2026-02-06   1:34 PM           5041 IExecDemo.tsx
--a----        2026-02-06  11:40 AM           1362 Index.tsx
--a----        2026-02-06   3:18 PM           4500 MultiAgentDashboard.tsx
--a----        2026-02-06  11:40 AM            751 NotFound.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\app
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           4685 PrivacyPage.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           3931 analytics.service.ts
--a----        2026-02-06  11:40 AM           4666 borrower.service.ts
--a----        2026-02-06  11:40 AM            173 index.ts
--a----        2026-02-06  11:40 AM           2316 ipfs.service.ts
--a----        2026-02-06  11:40 AM           6211 loan.service.ts
--a----        2026-02-06  11:40 AM           8134 tee.service.ts
--a----        2026-02-06   2:18 PM           3164 tee_verify.service.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\state
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:34 PM           1204 SessionManager.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\store
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           4006 debtOpsStore.ts
--a----        2026-02-06  11:40 AM           3542 privacyStore.ts
--a----        2026-02-06  11:40 AM           3380 riskEngineStore.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\test
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM            150 example.test.ts
--a----        2026-02-06  11:40 AM            368 setup.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           1735 analytics.types.ts
--a----        2026-02-06  11:40 AM           2800 borrower.types.ts
--a----        2026-02-06  11:40 AM           1621 index.ts
--a----        2026-02-06  11:40 AM            991 loan.types.ts
--a----        2026-02-06  11:40 AM            787 privacy.types.ts
--a----        2026-02-06  11:40 AM           1766 slides.types.ts
--a----        2026-02-06  11:40 AM           2159 tee.types.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\utils
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06  11:40 AM           1533 constants.ts
--a----        2026-02-06  11:40 AM           5863 crypto.ts
--a----        2026-02-06  11:40 AM           2444 encryption.ts
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\wallet
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   1:38 PM            912 provider.tsx
-    Directory: C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\websocket
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a----        2026-02-06   2:36 PM            822 hitl-server.ts
+FullName
+--------
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\contracts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\dashboard
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\discord
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hitl
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\iexec
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\memory
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\orchestrator
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\router
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\state
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\store
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\test
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\utils
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\wallet
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\websocket
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\workers
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\App.css
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\App.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\elizaos-orchestrator.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\index.css
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\main.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\vite-env.d.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\memory
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\tdx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\AgentRegistry.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\credit-agent-hi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\credit-agent.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\credtrust-agent...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\eliza-credit-ag...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\lending-agent.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\orchestrator.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\risk-agent.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\tdx\TDXCreditAg...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\tdx\TDXLendingA...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\agents\tdx\TDXRiskAgen...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\dashboard
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\elizaos
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api\eliza-orchestr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api\orchestrator
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\api\orchestrator\r...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\dashboard\page.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\app\elizaos\page.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\agent-dashb...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\agent-stats
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\agent-ui
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ai-chat
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\demo
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\eliza-chat
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\feedback
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iexec-demo
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iExecIntegr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\layout
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ops-center
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestration
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\organisms
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\slides
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\tee-monitor
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messaging
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\workflows
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\BackendStat...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\EnclaveTrac...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\IAppRunner.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\NavLink.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\WorkerInfoP...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\agent-dashb...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\agent-stats...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ai-chat\AIC...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\C...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\C...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\C...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\i...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\P...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\analytics\R...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\AppHead...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\CreditN...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\Dashboa...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\DataSub...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\TEEVisu...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\app\WalletC...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms\Badge...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms\Price...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms\Progr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\atoms\StatC...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\D...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\i...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\L...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\P...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\R...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\R...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\T...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\credtrust\W...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard\A...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard\C...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard\F...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard\i...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\dashboard\L...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\debt-market...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\demo\DemoDa...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\demo\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\eliza-chat\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\feedback\Co...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\feedback\Em...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\feedback\Su...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iexec-demo\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iExecIntegr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iExecIntegr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\iExecIntegr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Ana...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Cou...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Cre...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Fea...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Fin...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Flo...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Foo...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Hac...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Hea...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Her...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\IEx...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Pro...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Sol...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\landing\Tec...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\layout\Mobi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\layout\Page...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\layout\Side...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\marketplace...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ops-center\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ops-center\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ops-center\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\orchestrati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\organisms\i...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\organisms\T...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\Att...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\Dat...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\Dis...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\ind...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\Pri...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\privacy\Pri...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\slides\inde...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\slides\Slid...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\tee-monitor...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\accordio...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\alert-di...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\alert.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Animated...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Animated...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\aspect-r...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\avatar.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\badge.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\breadcru...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\button.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\calendar...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\card.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\carousel...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\chart.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\checkbox...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\collapsi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\command.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\context-...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\dialog.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\drawer.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\dropdown...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\form.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Gradient...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\hover-ca...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\input-ot...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\input.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Interact...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\label.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\LoadingS...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\menubar.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Modal.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\navigati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\paginati...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\popover.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\progress...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\Progress...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\radio-gr...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\resizabl...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\scroll-a...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\select.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\separato...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\sheet.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\sidebar.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\skeleton...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\slider.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\sonner.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\StatCard...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\switch.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\table.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\tabs.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\textarea...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\ThemeTog...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\toast.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\toaster.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\toggle-g...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\toggle.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\tooltip.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\ui\use-toas...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messagi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messagi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messagi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messagi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\components\Web3Messagi...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\contracts\abis.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\contracts\SelectiveABI...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\dashboard\DiscordHITLD...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\use-mobile.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\use-toast.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useAlertCenter.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useApi.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useHSMStatus.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useIntersectionO...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useMediaQuery.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useMintWithProof.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\usePrefetch.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\usePrivacy.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useTEE.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useTheme.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useTrancheManage...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useTranchePrices.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useWallet.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\hooks\useWebSocket.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\iexec\categories.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations\supabase
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations\supabase\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\integrations\supabase\...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\aa-client.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\api.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\config.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\dataProtector.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\dataProtectorProce...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\demo-data.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\elizaos-client.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\iexec-client.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\iexecMessaging.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\iexecTelegram.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\mockData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\monetization.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\multi-client.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\multiAgentMockData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\oracle.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\utils.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\lib\web3mail.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\analyticsData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\api.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\borrowerGenerato...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\demoBorrowers.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\iexecData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\loanData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\mockData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\portfolioData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\productionDatase...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\mocks\teeData.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\orchestrator\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\api
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\app
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\AgentsDashboard.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\App.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\BulkScore.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\Chat.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\IExecDemo.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\Index.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\MultiAgentDashbo...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\NotFound.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\pages\app\PrivacyPage.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\analytics.ser...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\borrower.serv...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\ipfs.service.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\loan.service.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\tee.service.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\services\tee_verify.se...
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\state\SessionManager.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\store\debtOpsStore.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\store\privacyStore.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\store\riskEngineStore.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\test\example.test.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\test\setup.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\analytics.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\borrower.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\index.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\loan.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\privacy.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\slides.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\types\tee.types.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\utils\constants.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\utils\crypto.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\utils\encryption.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\wallet\provider.tsx
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\websocket\hitl-server.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\workers\capabilities.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\workers\constraints.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\workers\simulator.ts
+C:\Users\lowlu\OneDrive\OTHER\Desktop\credtrust-3\src\workers\types.ts
