@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Cpu, Key, Shield, CheckCircle } from 'lucide-react';
+import { Lock, Cpu, Key, Shield, CheckCircle, Info } from 'lucide-react';
 import { TEE_WORKFLOW_STEPS } from '@/utils/constants';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const iconMap = {
   Lock,
@@ -9,6 +15,14 @@ const iconMap = {
   Key,
   Shield,
   CheckCircle,
+};
+
+const tooltips: Record<number, string> = {
+  1: "Data is encrypted using ECIES (Elliptic Curve Integrated Encryption Scheme) on the client side.",
+  2: "The encrypted data is sent to the iExec TEE. The TEE's hardware-level isolation ensures no one can see the data during transit.",
+  3: "Inside the Intel SGX enclave, the data is decrypted, processed, and the credit score is computed in a protected memory area.",
+  4: "A Groth16 Zero-Knowledge proof is generated to prove the computation was done correctly without revealing the inputs.",
+  5: "The result is recorded on-chain as a Soulbound NFT, authorized by the TEE's cryptographic signature.",
 };
 
 const colorMap: Record<number, string> = {
@@ -67,10 +81,26 @@ export default function TEEVisualizer() {
                 <div
                   className={`flex flex-col items-center text-center p-4 rounded-2xl border transition-all duration-300 ${
                     isActive
-                      ? 'bg-card border-primary/30'
+                      ? 'bg-card border-primary/30 shadow-md shadow-primary/5'
                       : 'bg-muted/30 border-border'
                   }`}
                 >
+                  {/* Tooltip Wrapper */}
+                  <div className="absolute top-2 right-2">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button className="p-1 rounded-full hover:bg-muted transition-colors">
+                            <Info className="h-3.5 w-3.5 text-muted-foreground/60 hover:text-primary transition-colors" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-[200px] text-xs">
+                          {tooltips[step.id]}
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+
                   {/* Icon */}
                   <motion.div
                     animate={{

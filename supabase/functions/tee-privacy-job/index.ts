@@ -93,8 +93,8 @@ Deno.serve(async (req) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     // Generate mock TEE result (in production, this comes from the enclave)
-    const score = 720 + Math.floor(Math.random() * 80);
-    const riskTier: TEEResult["riskTier"] = score >= 780 ? "A" : score >= 720 ? "B" : score >= 650 ? "C" : "D";
+    const score = 650 + Math.floor(Math.random() * 200);
+    const riskTier: TEEResult["riskTier"] = score >= 750 ? "A" : score >= 700 ? "B" : score >= 650 ? "C" : "D";
     const computeTime = (Date.now() - startTime) / 1000;
 
     const teeResult: TEEResult = {
@@ -126,7 +126,8 @@ Deno.serve(async (req) => {
         mrenclave,
         completed_at: new Date().toISOString(),
       })
-      .eq("id", job.id);
+      .eq("id", job.id)
+      .eq("user_id", user.id);
 
     if (updateError) {
       console.error("Failed to update privacy job:", updateError);

@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useAccount } from 'wagmi';
-import { encryptData, simulateTEEProcessing, EncryptedData, mockECIESEncrypt, generateKeyRaw, bufToHex, encryptJSON } from '@/utils/crypto';
+import { supabase } from '@/integrations/supabase/client';
+import { encryptData, EncryptedData, simulateTEEProcessing } from '@/utils/crypto';
 import { ProcessingStep, TEEResult, FinancialData } from '@/types';
 import { TEE_WORKFLOW_STEPS } from '@/utils/constants';
 import type { CreditApplicationData, ProofGenerationResult, SolidityProof } from '@/types/tee.types';
@@ -110,19 +111,29 @@ export function useTEE() {
         updateStepStatus(1, 'completed');
         setProgress(25);
 
-        // Step 2: TEE Enclave
+        // Step 2: Submit to Supabase Edge Function
         setCurrentStep(2);
         setStage('submitting');
         updateStepStatus(2, 'processing');
-        await new Promise(resolve => setTimeout(resolve, 600));
+        
+        const { data: edgeData, error: edgeError } = await supabase.functions.invoke('tee-privacy-job', {
+          body: { 
+            encryptedDataHash: encryptedData.hash,
+            ipfsHash: `ipfs://${encryptedData.hash}` // Mock IPFS hash
+          }
+        });
+
+        if (edgeError) throw new Error(edgeError.message);
+        
         updateStepStatus(2, 'completed');
         setProgress(40);
 
-        // Step 3: Private Computation
+        // Step 3: Private Computation (Wait for results from Edge Function)
         setCurrentStep(3);
         setStage('processing');
         updateStepStatus(3, 'processing');
-        const teeResult = await simulateTEEProcessing(encryptedData);
+        
+        const teeResult = edgeData.result;
         updateStepStatus(3, 'completed');
         setProgress(65);
 
@@ -130,22 +141,20 @@ export function useTEE() {
         setCurrentStep(4);
         setStage('verifying');
         updateStepStatus(4, 'processing');
-        await new Promise(resolve => setTimeout(resolve, 500));
         
-        // Generate proof result
+        const attestation = edgeData.attestation;
+        
+        // Generate proof result from edge function data
         const proof = generateMockGroth16Proof();
-        const randomHex = (len: number) => Array.from({ length: len }, () => 
-          '0123456789abcdef'[Math.floor(Math.random() * 16)]
-        ).join('');
         
         const generatedProof: ProofGenerationResult = {
           proof,
-          publicInputHash: `0x${randomHex(64)}` as `0x${string}`,
-          metadataCIDBytes32: `0x${randomHex(64)}` as `0x${string}`,
-          attPayloadHex: `0x${randomHex(128)}` as `0x${string}`,
-          attSigHex: `0x${randomHex(130)}` as `0x${string}`,
+          publicInputHash: `0x${attestation.mrenclave.substring(2)}` as `0x${string}`,
+          metadataCIDBytes32: `0x${attestation.mrenclave.substring(2)}` as `0x${string}`,
+          attPayloadHex: attestation.signature.substring(0, 130) as `0x${string}`,
+          attSigHex: attestation.signature as `0x${string}`,
           score: teeResult.score,
-          tier: teeResult.score >= 750 ? 'A' : teeResult.score >= 700 ? 'B' : teeResult.score >= 650 ? 'C' : 'D',
+          tier: attestation.riskTier,
         };
         setProofResult(generatedProof);
         

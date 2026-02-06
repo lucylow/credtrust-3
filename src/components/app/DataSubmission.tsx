@@ -81,34 +81,48 @@ export default function DataSubmission() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass-card p-6 md:p-8"
+      className="glass-card p-6 md:p-8 relative overflow-hidden"
     >
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
-        <div className="p-3 rounded-xl gradient-primary">
-          <Upload className="h-6 w-6 text-primary-foreground" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <div className="p-3 rounded-xl gradient-primary shadow-lg shadow-primary/20">
+            <Upload className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-foreground">
+              Submit Encrypted Financial Data
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Your data is encrypted locally before submission
+            </p>
+          </div>
         </div>
-        <div>
-          <h2 className="text-xl font-bold text-foreground">
-            Submit Encrypted Financial Data
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            Your data is encrypted locally before submission
-          </p>
-        </div>
+
+        {submitted && isProcessing && (
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+            <Loader2 className="h-4 w-4 text-primary animate-spin" />
+            <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+              TEE Processing
+            </span>
+          </div>
+        )}
       </div>
 
       <AnimatePresence mode="wait">
         {!submitted ? (
           <motion.form
             key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-6"
           >
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="income">Annual Income ($)</Label>
                 <Input
@@ -198,16 +212,48 @@ export default function DataSubmission() {
         ) : (
           <motion.div
             key="result"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
             className="space-y-6"
           >
             {isProcessing ? (
-              <div className="flex flex-col items-center justify-center py-12 gap-4">
-                <Loader2 className="h-12 w-12 text-primary animate-spin" />
-                <p className="text-lg font-medium text-foreground">Processing in TEE...</p>
-                <p className="text-sm text-muted-foreground">This may take a few seconds</p>
+              <div className="flex flex-col items-center justify-center py-12 gap-8">
+                <div className="relative">
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 rounded-full border-2 border-dashed border-primary/40"
+                  />
+                  <div className="relative p-6 rounded-full bg-primary/5">
+                    <Loader2 className="h-12 w-12 text-primary animate-spin" />
+                  </div>
+                </div>
+                
+                <div className="text-center space-y-2">
+                  <p className="text-xl font-bold text-foreground">Secure Enclave Processing</p>
+                  <p className="text-sm text-muted-foreground max-w-xs mx-auto text-balance">
+                    Our TEE is computing your credit score without revealing your raw financial data to anyone.
+                  </p>
+                </div>
+
+                <div className="w-full max-w-sm space-y-4">
+                  {/* Visual Step Progress could go here, or just a nice loading bar */}
+                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-primary"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 3, ease: "easeInOut" }}
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-2 text-[10px] font-medium text-muted-foreground uppercase tracking-widest text-center">
+                    <span className="text-primary">Encrypt</span>
+                    <span>Compute</span>
+                    <span>Verify</span>
+                  </div>
+                </div>
               </div>
             ) : result ? (
               <div className="space-y-6">
