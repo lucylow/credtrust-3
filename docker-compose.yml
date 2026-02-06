@@ -1,33 +1,43 @@
-version: '3.9'
+# docker-compose.yml - Full production stack
+version: '3.8'
+
 services:
-  elizaos-frontend:
-    build: .
+  # Frontend Dashboard
+  frontend:
+    build: ./frontend
     ports:
-      - "3000:3000"
+      - "3003:3003"
     environment:
-      - NEXT_PUBLIC_ELIZAOS_MODE=production
-    depends_on:
-      - supabase
-      - redis
+      - NEXT_PUBLIC_ARBITRUM_SEPOLIA_RPC=${ARBITRUM_SEPOLIA_RPC}
+      - NEXT_PUBLIC_CREDTRUST_VERIFIER=${CREDTRUST_VERIFIER}
+      - NEXT_PUBLIC_CREDTRUST_MARKETPLACE=${CREDTRUST_MARKETPLACE}
+    restart: unless-stopped
 
-  supabase:
-    image: supabase/postgres:16
+  # Telegram ElizaOS Agent
+  telegram-bot:
+    build: ./telegram
     environment:
-      - POSTGRES_PASSWORD=elizaos2026hack
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - ARBITRUM_SEPOLIA_RPC=${ARBITRUM_SEPOLIA_RPC}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+    restart: unless-stopped
 
+  # iExec Worker Node Monitor
+  iexec-monitor:
+    image: iexec-iexec-sdk:latest
+    command: >
+      sh -c "while true; do
+        iexec task show --watch;
+        sleep 30;
+      done"
+    environment:
+      - IEXEC_BELLECOUR=${IEEXEC_BELLECOUR}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+    restart: unless-stopped
+
+  # Redis (session memory)
   redis:
     image: redis:7-alpine
-    volumes:
-      - redis_data:/data
-
-  tdx-worker:
-    image: iexechub/tdx-elizaos-worker:latest
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              capabilities: [gpu]
-
-volumes:
-  redis_data:
+    ports:
+      - "6379:6379"
+    restart: unless-stopped

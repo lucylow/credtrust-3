@@ -1,0 +1,16 @@
+{
+  "name": "credtrust-tee",
+  "version": "2.0.0",
+  "description": "CredTrust PRODUCTION OUTPUTS iApp (TEE)",
+  "author": "CredTrust Team",
+  "language": "javascript",
+  "entrypoint": "node app/credtrust-outputs.js",
+  "secret": {
+    "zkpKeys": "zkp_keys_secret_name",
+    "web3mailConfig": "web3mail_config_secret_name"
+  },
+  "iexec": {
+    "chainId": 134,
+    "host": "https://bellecour.iex.ec"
+  }
+}
