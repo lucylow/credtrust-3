@@ -149,3 +149,18 @@ This project uses Lovable's bidirectional GitHub sync. Changes made in Lovable a
 ## 📄 License
 
 © 2026 CredTrust Protocol. Built for Hack4Privacy.
+
+
+### Run iApp with ProtectedData (CredTrust)
+
+This repo includes scripts & UI to start iExec iApp runs that consume ProtectedData (DataProtector).
+
+- CLI: `scripts/iapp/run_iapp_with_protected_data.ts`
+- Fetch results: `scripts/iapp/get_task_result.ts`
+- Frontend demo: `src/components/IAppRunner.tsx` (posts to `/api/iapp/run`)
+
+Run (dev):
+1. Copy `.env.example` -> `.env` and set `DEV_MODE=true`.
+2. `npm ci`
+3. Create sample ProtectedData (see other scripts).
+4. Submit run and fetch results.

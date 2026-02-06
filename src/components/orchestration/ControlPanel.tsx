@@ -1,3 +1,4 @@
+// components/orchestration/ControlPanel.tsx
 import { motion } from 'framer-motion';
 
 export function ControlPanel() {
