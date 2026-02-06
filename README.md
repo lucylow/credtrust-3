@@ -1,73 +1,108 @@
-# Welcome to your Lovable project
+# CredTrust: Privacy-Preserving Credit Marketplace
 
-## Project info
+> Built with [Lovable](https://lovable.dev) for the **Hack4Privacy** hackathon
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+CredTrust is a high-fidelity, privacy-preserving credit marketplace protocol that combines **iExec Trusted Execution Environments (TEE)**, **Zero-Knowledge Proofs (ZKP)**, and **Risk-Tranching Smart Contracts** to enable institutional-grade credit underwriting on **Arbitrum Sepolia** while maintaining absolute borrower data sovereignty.
 
-## How can I edit this code?
+## 🚀 Quick Start
 
-There are several ways of editing your application.
+```bash
+# Install dependencies
+npm install
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Visit [http://localhost:8080](http://localhost:8080) to view the app.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🛠️ Tech Stack
 
-**Use GitHub Codespaces**
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS
+- **UI Components**: shadcn/ui, Radix UI, Framer Motion
+- **Web3**: wagmi, viem, RainbowKit
+- **Charts**: Recharts
+- **State**: Zustand, TanStack Query
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📁 Project Structure
 
-## What technologies are used for this project?
+```
+├── src/
+│   ├── components/     # React components
+│   │   ├── ui/         # shadcn/ui components
+│   │   ├── landing/    # Landing page sections
+│   │   └── ...         # Feature components
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── pages/          # Page components
+│   ├── wallet/         # Web3 wallet provider
+│   └── types/          # TypeScript types
+├── contracts/          # Solidity smart contracts
+├── scripts/            # Deployment scripts
+└── public/             # Static assets
+```
 
-This project is built with:
+## 🔐 How CredTrust Works
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. **Ingestion**: Borrowers encrypt data client-side using iExec Data Protector
+2. **Processing**: An iExec SGX Enclave computes the credit score in isolation
+3. **Verification**: The TEE generates a Groth16 ZK Proof for risk tier verification
+4. **Settlement**: On-chain verifiers validate the ZKP and mint a Soulbound NFT credential
 
-## How can I deploy this project?
+## 🏗️ Architecture
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```mermaid
+graph TD
+    subgraph "Borrower Domain"
+        Data[Raw Credit Data] -->|Encrypt| iExecDP[iExec Data Protector]
+    end
 
-## Can I connect a custom domain to my Lovable project?
+    subgraph "Privacy Layer (TEE)"
+        iExecDP -->|Encrypted Blob| SGX[iExec SGX Enclave]
+        SGX -->|Compute| Score[Credit Score]
+        Score -->|Generate| ZKP[Groth16 ZK Proof]
+    end
 
-Yes, you can!
+    subgraph "Consensus Layer (Arbitrum)"
+        ZKP -->|Verify| ZKVer[ZKVerifier.sol]
+        ZKVer -->|Mint| SBNFT[CreditProofNFT.sol]
+        SBNFT -->|Authorize| Market[CredTrustMarketplace.sol]
+    end
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 💰 Risk Tranching
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+| Tier | Score Range | Interest Rate | Max LTV |
+|------|-------------|---------------|---------|
+| **A** | 750+ | 4.5% | 85% |
+| **B** | 700-749 | 8.0% | 70% |
+| **C** | 650-699 | 12.5% | 50% |
+| **D** | <650 | 22.0% | 30% |
+
+## 🔧 Environment Variables
+
+Create a `.env` file for local development:
+
+```env
+VITE_WALLETCONNECT_PROJECT_ID=your_project_id
+VITE_BACKEND_URL=http://localhost:4000
+```
+
+## 📦 Deployment
+
+### Lovable (Recommended)
+Simply click **Share → Publish** in the Lovable editor.
+
+### Manual Deployment
+```bash
+npm run build
+# Deploy the dist/ folder to your hosting provider
+```
+
+## 🤝 Contributing
+
+This project uses Lovable's bidirectional GitHub sync. Changes made in Lovable automatically push to GitHub, and vice versa.
+
+## 📄 License
+
+© 2026 CredTrust Protocol. Built for Hack4Privacy.

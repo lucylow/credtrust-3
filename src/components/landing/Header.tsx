@@ -2,6 +2,7 @@ import { Shield, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BackendStatus } from "@/components/BackendStatus";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -77,10 +78,11 @@ const Header = () => {
               {link.label}
             </motion.a>
           ))}
+          <BackendStatus size="sm" />
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button asChild className="ml-2">
               <a
-                href="https://github.com/yourusername/credtrust-hackathon"
+                href="https://github.com/lucylow/credtrust6"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -141,7 +143,7 @@ const Header = () => {
               >
                 <Button asChild className="w-full mt-2">
                   <a
-                    href="https://github.com/yourusername/credtrust-hackathon"
+                    href="https://github.com/lucylow/credtrust6"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

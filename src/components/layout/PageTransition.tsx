@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 interface PageTransitionProps {
@@ -114,23 +114,27 @@ export function StaggerContainer({
   );
 }
 
-export function StaggerItem({
-  children,
-  className,
-}: {
+interface StaggerItemProps {
   children: React.ReactNode;
   className?: string;
-}) {
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-      }}
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
 }
+
+export const StaggerItem = React.forwardRef<HTMLDivElement, StaggerItemProps>(
+  ({ children, className }, ref) => {
+    return (
+      <motion.div
+        ref={ref}
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+StaggerItem.displayName = 'StaggerItem';

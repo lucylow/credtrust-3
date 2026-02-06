@@ -1,7 +1,7 @@
 import { PlayCircle, Github, Lock, Shield, Zap, Award, Cpu, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -15,7 +15,7 @@ const HeroSection = () => {
   const stats = [
     { value: "300ms", label: "Proof Gen", icon: Zap },
     { value: "99.9%", label: "Uptime", icon: Shield },
-    { value: "Winner", label: "Hack4Privacy", icon: Award },
+    { value: "Hackathon", label: "Hack4Privacy", icon: Award },
     { value: "Mainnet", label: "Ready", icon: Cpu },
   ];
 
@@ -72,7 +72,7 @@ const HeroSection = () => {
             >
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
               <span className="text-sm font-medium text-muted-foreground">
-                Hack4Privacy Grand Prize Winner
+                Hack4Privacy Hackathon
               </span>
             </motion.div>
 
@@ -89,7 +89,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-gradient block"
+                className="text-gradient-animated block"
               >
                 Credit Markets
               </motion.span>
@@ -113,8 +113,8 @@ const HeroSection = () => {
             >
               <Button variant="hero" size="xl" asChild>
                 <Link to="/app">
-                  <ArrowRight className="h-5 w-5" />
                   Launch App
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
@@ -161,7 +161,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className="text-center p-3 rounded-xl bg-muted/30 border border-border/50"
+                  className="text-center p-3 rounded-xl bg-muted/30 border border-border/50 backdrop-blur-sm hover:border-primary/30 hover:bg-muted/50 transition-colors"
                 >
                   <stat.icon className="h-5 w-5 mx-auto mb-2 text-primary" />
                   <p className="text-lg font-bold text-foreground">{stat.value}</p>

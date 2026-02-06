@@ -69,3 +69,9 @@ export interface LoanApplication {
 }
 
 export type CreditScoreRange = 'excellent' | 'good' | 'fair' | 'poor';
+
+// Re-export types from other modules
+export * from './loan.types';
+export * from './analytics.types';
+export * from './borrower.types';
+export * from './tee.types';

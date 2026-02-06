@@ -11,6 +11,7 @@ export function useTheme() {
   });
 
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -27,8 +28,10 @@ export function useTheme() {
 
     if (effectiveTheme === 'dark') {
       root.classList.add('dark');
+      root.classList.remove('light');
     } else {
       root.classList.remove('dark');
+      root.classList.add('light');
     }
 
     localStorage.setItem('credtrust-theme', theme);
@@ -47,19 +50,35 @@ export function useTheme() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
+  // Smooth theme transition
+  const setThemeWithTransition = useCallback((newTheme: Theme) => {
+    const root = document.documentElement;
+    
+    // Add transition class
+    root.classList.add('theme-transitioning');
+    setIsTransitioning(true);
+    
+    // Set the new theme
+    setTheme(newTheme);
+    
+    // Remove transition class after animation completes
+    setTimeout(() => {
+      root.classList.remove('theme-transitioning');
+      setIsTransitioning(false);
+    }, 400);
+  }, []);
+
   const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      if (current === 'dark') return 'light';
-      if (current === 'light') return 'system';
-      return 'dark';
-    });
+    const nextTheme = theme === 'dark' ? 'light' : theme === 'light' ? 'system' : 'dark';
+    setThemeWithTransition(nextTheme);
   }, []);
 
   return {
     theme,
     resolvedTheme,
-    setTheme,
+    setTheme: setThemeWithTransition,
     toggleTheme,
     isDark: resolvedTheme === 'dark',
+    isTransitioning,
   };
 }

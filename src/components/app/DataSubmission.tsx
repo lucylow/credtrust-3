@@ -4,11 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, Lock, Shield, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { useAccount } from 'wagmi';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useTEE } from '@/hooks/useTEE';
-import { useWallet } from '@/hooks/useWallet';
 import { toast } from 'sonner';
 import { FinancialData } from '@/types';
 
@@ -21,7 +21,7 @@ const formSchema = z.object({
 });
 
 export default function DataSubmission() {
-  const { wallet } = useWallet();
+  const { isConnected } = useAccount();
   const { isProcessing, result, error, processData, reset } = useTEE();
   const [submitted, setSubmitted] = useState(false);
 
@@ -42,7 +42,7 @@ export default function DataSubmission() {
   });
 
   const onSubmit = async (data: FinancialData) => {
-    if (!wallet.isConnected) {
+    if (!isConnected) {
       toast.error('Please connect your wallet first');
       return;
     }
@@ -189,7 +189,7 @@ export default function DataSubmission() {
               variant="hero"
               size="lg"
               className="w-full gap-2"
-              disabled={!wallet.isConnected || isProcessing}
+              disabled={!isConnected || isProcessing}
             >
               <Shield className="h-5 w-5" />
               Submit Encrypted Application

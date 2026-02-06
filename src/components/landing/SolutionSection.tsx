@@ -1,6 +1,7 @@
-import { Medal } from "lucide-react";
+import { Medal, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useState } from "react";
 
 const steps = [
   {
@@ -34,6 +35,7 @@ const SolutionSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
     <section id="solution" className="py-20 md:py-28 bg-muted/30 relative overflow-hidden">
@@ -41,14 +43,19 @@ const SolutionSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--secondary)/0.1)_0%,transparent_50%)]" />
       
       <div className="container relative z-10" ref={ref}>
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-16"
+          className="text-center mb-16"
         >
-          How CredTrust Works
-        </motion.h2>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
+            How It Works
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Simple, Secure, Private
+          </h2>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Architecture Steps */}
@@ -65,27 +72,60 @@ const SolutionSection = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
-                  className="relative flex gap-4 pb-8 last:pb-0 group"
+                  onHoverStart={() => setActiveStep(index)}
+                  onHoverEnd={() => setActiveStep(null)}
+                  className="relative flex gap-4 pb-8 last:pb-0 group cursor-default"
                 >
                   {/* Connecting line */}
                   {index !== steps.length - 1 && (
-                    <div className="absolute left-5 top-12 w-0.5 h-full bg-border group-hover:bg-primary/50 transition-colors" />
+                    <motion.div 
+                      className="absolute left-5 top-12 w-0.5 h-full bg-border"
+                      animate={{
+                        backgroundColor: activeStep === index ? 'hsl(var(--primary))' : 'hsl(var(--border))',
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
                   )}
                   
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-bold shrink-0 relative z-10 shadow-glow"
+                    animate={{
+                      scale: activeStep === index ? 1.15 : 1,
+                      boxShadow: activeStep === index 
+                        ? '0 0 25px hsl(var(--primary) / 0.5)' 
+                        : '0 0 15px hsl(var(--primary) / 0.3)',
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-bold shrink-0 relative z-10"
                   >
                     {step.number}
                   </motion.div>
-                  <div>
-                    <h4 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                  <div className="flex-1">
+                    <motion.h4 
+                      className="font-bold text-foreground mb-1 transition-colors"
+                      animate={{ color: activeStep === index ? 'hsl(var(--primary))' : 'hsl(var(--foreground))' }}
+                    >
                       {step.title}
-                    </h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    </motion.h4>
+                    <motion.p 
+                      className="text-muted-foreground text-sm leading-relaxed"
+                      animate={{ opacity: activeStep === index ? 1 : 0.8 }}
+                    >
                       {step.description}
-                    </p>
+                    </motion.p>
                   </div>
+                  
+                  {/* Checkmark on hover */}
+                  <motion.div
+                    className="text-success"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: activeStep === index ? 1 : 0,
+                      scale: activeStep === index ? 1 : 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <CheckCircle2 className="h-5 w-5" />
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
