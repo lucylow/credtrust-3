@@ -72,13 +72,13 @@ export class CredTrustAgent extends ElizaAgent {
 }
 
 function AgentAction(name: string) {
-    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-        return descriptor;
+    return (target: any, propertyKey: string, descriptor?: PropertyDescriptor) => {
+        return descriptor as any;
     };
 }
 
 function AgentEvaluator(name: string) {
-    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-        return descriptor;
+    return (target: any, propertyKey: string, descriptor?: PropertyDescriptor) => {
+        return descriptor as any;
     };
 }

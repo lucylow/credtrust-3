@@ -53,7 +53,7 @@ export default function IExecDemo() {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4 max-w-4xl">
+    <div className="py-4">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,13 +62,13 @@ export default function IExecDemo() {
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
           Interactive iExec TEE Demo
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-muted-foreground text-lg">
           Experience the full lifecycle of a privacy-preserving credit score computation.
         </p>
       </motion.div>
 
-      <div className="grid gap-8">
-        <Card className="bg-slate-900/50 border-slate-800 backdrop-blur-sm">
+      <div className="grid gap-8 max-w-4xl mx-auto">
+        <Card className="bg-card/50 border-border backdrop-blur-sm shadow-xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-blue-400" />
@@ -82,9 +82,9 @@ export default function IExecDemo() {
             <IExecDemoStepper currentStep={currentStep} steps={STEPS} />
             {taskId && <TeeJobMonitor taskId={taskId} />}
           </CardContent>
-          <CardFooter className="justify-center border-t border-slate-800 pt-6">
+          <CardFooter className="justify-center border-t border-border pt-6">
             {!isProcessing && currentStep === 0 && (
-              <Button size="lg" onClick={startDemo} className="bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" onClick={startDemo} className="bg-blue-600 hover:bg-blue-700 text-white">
                 <Zap className="mr-2 h-4 w-4" />
                 Run Full Stack Demo
               </Button>
@@ -95,34 +95,39 @@ export default function IExecDemo() {
                   <Database className="w-4 h-4" />
                   Full iExec stack demo complete!
                 </p>
-                <Button variant="outline" onClick={() => {setCurrentStep(0); setTaskId('');}}>
-                  Reset Demo
-                </Button>
+                <div className="flex gap-4 justify-center">
+                  <Button variant="outline" onClick={() => {setCurrentStep(0); setTaskId('');}}>
+                    Reset Demo
+                  </Button>
+                  <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                    <a href="/app">Go to Main App</a>
+                  </Button>
+                </div>
               </div>
             )}
           </CardFooter>
         </Card>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border shadow-md">
             <CardHeader>
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="text-base flex items-center gap-2 font-bold">
                 <Mail className="w-4 h-4 text-purple-400" />
                 Web3Mail Integration
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-slate-400">
+            <CardContent className="text-sm text-muted-foreground">
               Confidential notification sent to user via iExec Web3Mail without exposing their actual email address.
             </CardContent>
           </Card>
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border shadow-md">
             <CardHeader>
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="text-base flex items-center gap-2 font-bold">
                 <Terminal className="w-4 h-4 text-emerald-400" />
                 Enclave Verification
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-slate-400">
+            <CardContent className="text-sm text-muted-foreground">
               Hardware-level attestation ensures the credit model was executed exactly as programmed inside the TEE.
             </CardContent>
           </Card>

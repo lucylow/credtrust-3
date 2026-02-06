@@ -15,9 +15,7 @@ import FloatingParticles from "@/components/landing/FloatingParticles";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <FloatingParticles />
-      <Header />
+    <div className="bg-background">
       <main>
         <HeroSection />
         
