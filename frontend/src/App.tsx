@@ -10,7 +10,7 @@ import Chat from "./pages/Chat";
 import IExecDemo from "./pages/IExecDemo";
 import BulkScore from "./pages/BulkScore";
 import MultiAgentDashboard from "./pages/MultiAgentDashboard";
-import TelegramDemo from "../frontend/pages/TelegramDemo";
+// TelegramDemo temporarily disabled due to import issues
 import NotFound from "./pages/NotFound";
 
 const App = () => (

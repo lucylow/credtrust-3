@@ -2,9 +2,15 @@ export class ElizaOSClient {
   private agent: any;
   private tdx: TDXClient;
   
-  async initialize(characterPath: string) {
-    this.agent = await import('elizaos').then(m => m.createAgent(characterPath));
+  constructor() {
     this.tdx = new TDXClient();
+    this.agent = { plan: async (goal: string) => ({ actions: [] }) };
+  }
+  
+  async initialize(characterPath: string) {
+    // Note: elizaos package must be installed separately for full functionality
+    // This mock implementation works without the package
+    console.log('ElizaOS client initialized with mock agent for character:', characterPath);
   }
   
   async processGoal(goal: string) {
