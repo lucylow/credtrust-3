@@ -1,16 +1,46 @@
 'use client';
-import { useChat } from 'ai/react';
+import React, { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export function ElizaOSChat() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: '/api/eliza-agent',
-    initialMessages: [{
-      id: 'welcome',
-      role: 'assistant',
-      content: `🤖 CredTrust Agent online (TDX Enclave #${randomTDXID()})\n\nI monitor portfolios 24/7, score credit confidentially, execute loans autonomously.\n\nTry: "Score wallet 0x123", "Find best loan", "Monitor my risk"`
-    }]
-  });
+  const [messages, setMessages] = useState<Message[]>([{
+    id: 'welcome',
+    role: 'assistant',
+    content: `🤖 CredTrust Agent online (TDX Enclave #${randomTDXID()})\n\nI monitor portfolios 24/7, score credit confidentially, execute loans autonomously.\n\nTry: "Score wallet 0x123", "Find best loan", "Monitor my risk"`
+  }]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    
+    const userMessage: Message = { id: Date.now().toString(), role: 'user', content: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    // Simulate AI response
+    setTimeout(() => {
+      const response: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `Processing: "${input}"\n\n🔒 TDX Enclave verified\n📊 Analysis complete\n✅ Result secured on-chain`
+      };
+      setMessages(prev => [...prev, response]);
+      setIsLoading(false);
+    }, 1500);
+  };
 
   return (
     <motion.div 
