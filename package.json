@@ -98,6 +98,8 @@
 
     "ai": "^6.0.75",
 
+    "autoprefixer": "^10.4.24",
+
     "axios": "^1.13.4",
 
     "borsh": "^2.0.0",
@@ -130,6 +132,8 @@
 
     "next-themes": "^0.4.6",
 
+    "postcss": "^8.5.6",
+
     "react": "^18.3.1",
 
     "react-day-picker": "^9.13.1",
@@ -149,6 +153,8 @@
     "sonner": "^2.0.7",
 
     "tailwind-merge": "^3.4.0",
+
+    "tailwindcss": "^3.4.19",
 
     "vaul": "^1.1.2",
 
