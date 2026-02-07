@@ -1,9 +1,9 @@
 // src/websocket/hitl-server.ts
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const wsModule = require('ws');
-const WebSocketServer = wsModule.Server;
-const WebSocket = wsModule;
+const WsServer = wsModule.Server || wsModule.WebSocketServer;
 
-const wss = new (wsModule.Server || wsModule.WebSocketServer)({ port: 8081 });
+const wss = new WsServer({ port: 8081 });
 
 console.log('🚀 HITL WebSocket Server starting on port 8081...');
 
@@ -22,12 +22,8 @@ wss.on('connection', (ws: any) => {
   });
 
   ws.on('close', () => {
-    console.log('❌ Connection closed');
-  });
-
-  ws.on('error', (error: any) => {
-    console.error('⚠️ WebSocket error:', error);
+    console.log('🔌 Connection closed');
   });
 });
 
-console.log('✅ HITL WebSocket Server is ready');
+console.log('✅ HITL WebSocket Server ready');
